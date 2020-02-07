@@ -2,9 +2,8 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>ARCHITP1</groupId>
-    <artifactId>ARCHITP1</artifactId>
+    <artifactId>MS</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>EMS</artifactId>
-  <packaging>pom</packaging>
+  <artifactId>ms_bibliotheque</artifactId>
 </project>
