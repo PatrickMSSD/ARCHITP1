@@ -1,10 +1,10 @@
-package service;
+package fr.tse.myapp.service;
 
-import repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import domain.Utilisateur;
+import fr.tse.myapp.domain.Utilisateur;
+import fr.tse.myapp.repository.UserRepository;
 
 
 @Service

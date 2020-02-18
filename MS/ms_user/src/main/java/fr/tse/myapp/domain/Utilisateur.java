@@ -1,4 +1,4 @@
-package domain;
+package fr.tse.myapp.domain;
 
 import javax.persistence.*;
 

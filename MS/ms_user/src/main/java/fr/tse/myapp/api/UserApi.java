@@ -1,4 +1,4 @@
-package api;
+package fr.tse.myapp.api;
 
 import java.io.IOException;
 
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import domain.Utilisateur;
-import service.UserService;
+import fr.tse.myapp.domain.Utilisateur;
+import fr.tse.myapp.service.UserService;
 
 @RestController
 public class UserApi {
