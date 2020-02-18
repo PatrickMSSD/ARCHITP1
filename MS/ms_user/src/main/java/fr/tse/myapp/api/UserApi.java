@@ -25,9 +25,9 @@ public class UserApi {
 	}
 	
 	@RequestMapping(path = "Inscription", method = RequestMethod.POST, consumes = {"application/json"},produces = {"application/json"})
-	public long inscription(@RequestBody Utilisateur inscri) throws IOException {
-		long id = this.userService.inscription(inscri); 
-		return id;
+	public String inscription(@RequestBody Utilisateur inscri) throws IOException {
+		this.userService.inscription(inscri); 
+		return("Utilisateur inscrit");
 	}
 	
 	@RequestMapping(path = "Connexion", method = RequestMethod.POST, consumes = {"application/json"},produces = {"application/json"})

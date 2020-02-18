@@ -14,15 +14,17 @@ public class UserService {
 	UserRepository userRepository;
 	
 	
-	public long inscription(Utilisateur inscri) {
-		
-		Utilisateur user = new Utilisateur();
-		
+	public void inscription(Utilisateur inscri) {
+	
 		userRepository.save(inscri);
-		user = userRepository.getUserConnexion(inscri.getEmail(), inscri.getMdp());
+	}
+	
+	public long getId(Utilisateur user) {
+		user = userRepository.getUserConnexion(user.getEmail(), user.getMdp());
 		
 		// retourne l'utilisateur pour son ID
 		return user.getIdBDD();	
+		
 	}
 	
 	public Utilisateur connexion(Utilisateur connecte) {
