@@ -30,6 +30,20 @@ TP1 - Tutoriel de technologies emergentes
   
   ... Point fort de Spring ...
   
+  #### Inversion of Control et Dependency Inversion 
+  
+  ##### Inversion of Control (IoC)
+  
+  L'inversion de contrôle ou Inversion of Control (IoC) en anglais est un patron d'architecture commun à de nombreux framework dont Spring/Spring Boot. 
+De façon grossière l'inversion de contrôle inverse le flow de du déroulement de l'application : ce n'est plus l'application qui déroule le code mais le code qui réagit à des événements lancés par le framework.
+
+... Exemple ... 
+
+  ##### Dependency Inversion (DI)
+  
+  L'inversion de dépendance ou Dependency Inversion (DI) en anglais est un paradigme utilisé pour faire de l'inversion de contrôle. Dans ce cas ce n'est pas le programmeur qui crée les instances de classe importante, c'est le framework qui va en crée une ou en fournir une déja existante.
+  
+... Exemple ...
   
   ### Spring Boot
   
@@ -42,7 +56,7 @@ Il permet de créer facilement des applications autonomes basées sur Spring gr�
   * Automatisation des configurations pour Spring et certaines librairies quand c'est possible
   * Management des dépendances pour éviter les problèmes de versionnages 
 
-Un point clef de Spring Boot est le fait qu'il permette de créé des applications " production - ready " sans génération de code.
+Spring Boot est donc un outil extrèmement intéressant pour créé des applications "production-ready" en peu de temps et facilement.
 
   
  
