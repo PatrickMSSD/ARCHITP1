@@ -20,6 +20,7 @@ TP1 - Tutoriel de technologies emergentes
 
 
 ## Présentation de la technologie 
+
 ### Spring 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   Spring est un framework open source créée en 2003 par Rod Johnson en tant qu'alternative à J2EE.
@@ -33,7 +34,7 @@ TP1 - Tutoriel de technologies emergentes
   ... Point fort de Spring ...
   
 #### Inversion of Control et Dependency Inversion 
-  
+
 ##### Inversion of Control (IoC)
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   L'inversion de contrôle ou Inversion of Control (IoC) en anglais est un patron d'architecture commun à de nombreux framework dont Spring/Spring Boot. 
@@ -80,7 +81,7 @@ Les bénèfices de l'IoC sont nombreux :
 
 
 
-  
+
 ### Spring Boot
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   Spring boot est initialement un modul du framework Spring mais peut être considéré comme un framework à part entière. 
@@ -95,10 +96,18 @@ Il permet de créer facilement des applications autonomes basées sur Spring gr�
 Spring Boot est donc un outil extrèmement intéressant pour créé des applications "production-ready" en peu de temps et facilement.
 
   
- 
-## Objectif du tutoriel
 
+
+## Objectif du tutoriel
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+L’objectif de ce tutoriel est d’implémenter facilement des microservices à l’aide du framework spring et un de ses sous framework springBoot.
 ... Application micro service... 
 ... Rapide def de micro service ...
 ... Pourquoi spring est utile ici...
-  
+... Présentation de l'application que l'on veut faire ...
+
+
+## Tutoriel
+1. Mise en place du projet
+2. Implémentation
+3. Exécution
