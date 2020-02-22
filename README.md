@@ -116,10 +116,10 @@ A la fin de ce tutoriel il vous sera possible de créer une application de gesti
 
 Pour ce tutoriel nous allons utiliser différent outils :
 
-* L'IDE [Eclipse] (https://www.eclipse.org/eclipseide/)
+* L'IDE [Eclipse](https://www.eclipse.org/eclipseide/)
 * Maven	3.6.1 qui est directement intégré à Eclipse 
-* [PostgreSQL] (https://www.postgresql.org/download/) pour windows
-* [postman] (https://www.postman.com/downloads/) qui est un outil extrèmement utile lors de l'utilisation d'API REST
+* [PostgreSQL](https://www.postgresql.org/download/) pour windows
+* [postman](https://www.postman.com/downloads/) qui est un outil extrèmement utile lors de l'utilisation d'API REST
 
 
 
