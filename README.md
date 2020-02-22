@@ -364,6 +364,7 @@ Pour les microservices il faut tenter de faire des bases de données au plus sim
 
 
 | idBDD | idLivre | idUser | Date de Retour |
+--- | --- | --- | ---
 
 Avec idBDD l'id unique de l'entrée en base
 
@@ -581,23 +582,42 @@ Si vous avez l'oeil fin vous aurez remarqué que je parle de la classe Collectio
 
 Cette interface extend JpaRepository. Cette dernière est un module du framework Spring qui permet de facilement de manipuler des données. 
 
-Ansi la méthode save() de notre classe CollectionRepository est une méthode de ce module qui permet de sauvegarder une entrée dans la base de donnée par rapport au information contenue dans un objet. 
 
-Par exemple pour sauvegarder l'emprunt d'un livre par un utilisateur x nous allons créer un objet Collection avec les différentes informations nécéssaire et le passer en paramètre de la fonction save. 
+Ansi la méthode save() de notre classe CollectionRepository est une méthode de ce module qui permet de sauvegarder une entrée dans la base de donnée par rapport au information contenue dans un objet. Par exemple pour sauvegarder l'emprunt d'un livre par un utilisateur x nous allons créer un objet Collection avec les différentes informations nécéssaire et le passer en paramètre de la fonction save. 
 
 Il en est de même pour la méthode deleteByidBDD, la méthode deleteBy"Attribut" est une méthode du module JpaRepository.
 Il existe bien d'autre méthode de ce type.
 
 Ces deux méthodes vont servir à "emprunter" et "rendre" un livre. 
 
+
 La méthode getUserColletion permet de consulter la collection d'un utilisateur selon son identifiant unique. Cette méthode n'existe pas dans les modules il faut donc l'écrire. Ici encore Spring va nous faire gagner du temps ! 
 
-@Query permet d'écrire des queries, soit en JPQL par défaut soit dans le langage de votre base de données ( grâce au paramètre "nativeQuery=true") 
-
-Ainsi nous écrivons une query pour récupérer l'ensemble des entrées qui correspondent à l'id fournis. Cette méthode va retourner le résultat dans le return de la signature donc une Liste d'instance de Collection. Rien de plus simple !
+@Query permet d'écrire des queries, soit en JPQL par défaut soit dans le langage de votre base de données ( grâce au paramètre "nativeQuery=true"). Ainsi nous écrivons une query pour récupérer l'ensemble des entrées qui correspondent à l'id fournis. Cette méthode va retourner le résultat dans le return de la signature donc une Liste d'instance de Collection. Rien de plus simple !
 
 Les @Param font le lien entre le nom des paramètres de la méthode et leur appélation en base.
 
+
+**Base de données** 
+
+Dans l'ensemble de cette partie nous avons parlé de base de données, mais comment peut on configuré nos entrées vers la base de données ? 
+Cela ce fait dans le fichier application.properties de notre microservice en rajoutant ces lignes : 
+
+```xml
+## PostgreSQL
+spring.datasource.driverClassName=org.postgresql.Driver
+spring.datasource.url=jdbc:postgresql: l'adresse de votre base
+spring.datasource.username= le nom de votre base 
+spring.datasource.password= votre mot de passe
+
+#drop n create table again, good for testing, comment this in production
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQL9Dialect
+spring.jpa.show-sql=false
+spring.jpa.hibernate.ddl-auto=create
+
+```
+
+Les trois dernières lignes sont très intéréssantes en production car elles permettent de recréer la table pour test à chaque lancement de l'application.
 
 
 
