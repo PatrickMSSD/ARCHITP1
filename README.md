@@ -27,13 +27,14 @@ Spring est un framework open source, créée en 2003 par Rod Johnson en tant qu'
 Aujourd'hui, Spring n'est plus considéré comme un framework mais comme une plateforme viable pour créer des applications d'entreprises.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Spring a initialement été créé comme container pour l'injection de dépendance en faisant de l'inversion de contrôle mais il a maintenant d'autres concepts clés qui sont présents par exemple : 
-	* la programmation orienté aspect
-	* une couche d’abstraction qui permet de faciliter l'intégration d'autres frameworks Java ou de librairies
-	* la programmation suivant le patron MVC
-
+  * la programmation orienté aspect
+  * une couche d’abstraction qui permet de faciliter l'intégration d'autres frameworks Java ou de librairies
+  * la programmation suivant le patron MVC
+  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Avec Spring, il y a des sous-projets qui permettent de rendre Spring modulaire. Ces modules permettent aux développeurs de créer une application plus rapidement et de n'utiliser que les modules dont ils ont besoin. Les plus utiles sont par exemple : 
-	* Spring Data : permet de simplifier l'accès aux bases de données relationnelles et NoSQL, 
-	* Spring Security : permet de sécuriser facilement une application.
+  * Spring Data : permet de simplifier l'accès aux bases de données relationnelles et NoSQL, 
+  * Spring Security : permet de sécuriser facilement une application.
   
 #### Inversion of Control et Dependency Inversion 
 
