@@ -121,6 +121,16 @@ Pour ce tutoriel nous allons utiliser différent outils :
 * [PostgreSQL](https://www.postgresql.org/download/) pour windows
 * [postman](https://www.postman.com/downloads/) qui est un outil extrèmement utile lors de l'utilisation d'API REST
 
+Comme définis précédemment nous allons nous intérésser à la création d'une application de gestion de collection très simple. 
+
+L'utilisateur de l'application pourra se connecter, emprunter un livre (c'est à dire l'ajouter à sa collection), rendre un livre (ce qui revient à l'enlever de sa collection) et consulter sa collection de livre.
+
+
+Voici l'architecture de l'application, nous l'éttoferons plus tard dans le projet : 
+
+
+![Archicture]
+
 
 
 2. Implémentation
