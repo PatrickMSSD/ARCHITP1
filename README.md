@@ -302,10 +302,14 @@ Au niveau du code nous avons deux différences par rapport à un main normal :
 **@SpringBootApplication** 
 
 Est une annotation de Spring Boot  qui regroupe les annotations suivantes : 
+
 	* @EnableAutoConfiguration qui permet le méchanisme d'auto configuration de Spring Boot. Ce dernier va configurer notre appliaction Spring automatiquement selon les dépendences que nous avons ajouté à notre projet !
-	* @ComponentScan permet de scanner le package ( ou l'ensemble de sous package dans notre cas) ou l'application se trouve et ainsi localiser l'ensemble des éléments (classe, interface ...)
-	* @Configuration qui permet d'enregistrer et d'importer nos propres classes de configuration
 	
+	* @ComponentScan permet de scanner le package ( ou l'ensemble de sous package dans notre cas) ou l'application se trouve et ainsi localiser l'ensemble des éléments (classe, interface ...)
+	
+	* @Configuration qui permet d'enregistrer et d'importer nos propres classes de configuration
+
+**SpringApplication.run(App.class, args)**
 	
 ```java
 	public static void main(String[] args) {
