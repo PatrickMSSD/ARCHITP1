@@ -228,9 +228,13 @@ Dans un premier temps nous allons créer différent package toujours dans un sou
 Il y en aura 5 : 
 
 Le package **fr.tse.myapp** sera le package racine, il contiendra la classe App.java qui sera le point d'entrée de notre microservice
+
 Le package **fr.tse.myapp.api** sera le package qui contiendra l'ensemble de nos classe de routing
+
 Le package **fr.tse.myapp.domain** sera le package qui contiendra l'ensemble de nos classes d'objet tel que des POJO ou encore les classes représentant les instances a transmettre sur le réseau
+
 Le package **fr.tse.myapp.repository** sera le package qui contiendra l'ensemble des classes utilisés pour communiquer avec nos bases de données 
+
 Le package **fr.tse.myapp.service** sera le package qui contiendra l'ensemble des classes contenant le code métier
 
 
