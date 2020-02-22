@@ -193,13 +193,30 @@ Pour MS, faites un clique droit sur le projet ARCHITP1 New > Project...
 
 Cette fois séléctionner Maven Module
 
+![Maven](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/maven1.png)
+
 Cocher la case "Create a simple project" et entrer le nom MS puis cliquer sur suivant. 
-
 Changer le Packaging en pom et mettez le nom MS. 
+Cliquer sur Finish et faites de même pour le sous projet EMS.
 
-Cliquer sur Finish et faites de même pour le projet EMS.
+Il est enfin temps de créer nos microservices ! 
 
+La création de microservices peut se faire automatiquement grâce à l'outil [Spring Initializr](https://start.spring.io/), dans ce tutoriel nous ferons tout à la main pour comprendre les rouages du framework :).
 
+Pour le microservice Utilisateur appelé ms_user : 
+
+faites un clique droit sur le projet MS New > Project...
+Séléctionner Maven Module
+Cocher la case "Create a simple project" et entrer le nom ms_user puis cliquer sur suivant. 
+Changer le Packaging en jar et mettez le nom ms_user. 
+Cliquer sur Finish et faites de même pour le sous projet ms_collection.
+
+Faites de même pour les edges microservices ems_eureka et ems_zuul ! 
+Ribbon n'est pas présent car il est directement intégré à nos microservices. 
+
+Voici ce que devrait donner le résultat final : 
+
+![Résultat](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/résultat.png)
 
 2. Implémentation
 3. Exécution 
