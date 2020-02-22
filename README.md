@@ -36,16 +36,19 @@ Avec Spring, il y a des sous-projets qui permettent de rendre Spring modulaire. 
   * Spring Data : permet de simplifier l'accès aux bases de données relationnelles et NoSQL, 
   * Spring Security : permet de sécuriser facilement une application.
   
-#### Inversion of Control et Dependency Inversion 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  Nous allons maintenant présenter des concepts clés de Spring, certains modules et quelques outils.
+  
+##### Inversion of Control et Dependency Inversion 
 
-##### Inversion of Control (IoC)
+###### Inversion of Control (IoC)
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   L'inversion de contrôle ou Inversion of Control (IoC) en anglais est un patron d'architecture commun à de nombreux framework dont Spring/Spring Boot. 
 De façon grossière l'inversion de contrôle inverse le flow de du déroulement de l'application : ce n'est plus l'application qui déroule le code mais le code qui réagit à des événements lancés par le framework.
 
 ... Exemple ... 
 
-##### Dependency Inversion (DI)
+###### Dependency Inversion (DI)
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   L'inversion de dépendance ou Dependency Inversion (DI) en anglais est un paradigme utilisé pour faire de l'inversion de contrôle. Dans ce cas ce n'est pas le programmeur qui crée les instances de classe importante, c'est le framework qui va en crée une ou en fournir une déja existante.
 
@@ -82,7 +85,30 @@ Les bénèfices de l'IoC sont nombreux :
 * Simplicité des tests par isolation des composants.
 
 
+##### Spring Initilizr 
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Spring Initilizr est un site qui permet, permet en remplissant un formulaire de générer, en appuyant sur le bouton generate, une archive qui permet d'amorcer le projet. Il y a le fichier pom.xml qui a déjà les dépendances de bases dont on aura besoin en fonction de ce que l'on aura rempli dans le formulaire, l’arborescence du projet est déjà créée automatiquement le dossier pour le main, le dossier pour les tests, etc. Dans le dossier src il y a déjà le squelette d'une classe pour une application qui utilise Spring Boot. Si on ne souhaite pas générer tous ces fichiers on peut seulement les consulter en appuyant sur le bouton Explore.
+
+
+##### Spring Testig 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Spring Test est un module qui, comme son nom l'indique,  permet de tester son application. C'est un module qui contient beaucoup de façons de faire des tests pour plusieurs situations possibles. Il est possible de faire à la fois des tests unitaires mais aussi de l'intégration.
+Pour les tests unitaires, ce module offre des mocks objets avec des paquets dédiés :
+  * pour une application qui dépend d'un environnement spécifique en dehors du container 
+  * pour les environnements Java Naming and Directory Interface (JNDI), qui permettent de faire des suites de tests ou des applications autonome sans avoir besoin de modifier l'application
+  * pour les environnements web, controllers et filtre
+  * pour les applications avec du WebFLux, on peut faire les tests sans avoir de serveur http
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Spring offre aussi des classes pour faire des tests unitaires, 
+  * ReflectionTestUtils : permet, par exemple, de changer les valeurs des constantes, modifier un champ qui est privé , invoquer des méthodes privées qui modifie champs (setter method) dans certains types d'application.
+  * AopTestUtils :  permet de connaître des configurations qui sont faites automatiquement par Spring avec les annotations.
+  * ModelAndViewAssert : avec la combinaison d'autres frameworks pour les tests unitaires permet de faire des tests plus facilement pour le module Spring MVC.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Ce module permet aussi de faire des tests d'intégrations.
 
 
 ### Spring Boot
