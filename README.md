@@ -115,7 +115,7 @@ Ce module permet aussi de faire des tests d'intégrations.
 Il permet de créer facilement des applications autonomes basées sur Spring grâce à ces fonctionnalités :
   
   * Création d'application autonome
-  * Intégration de serveur Tomcat, jetty ou Undertow de façon native
+  * Intégration de serveur Tomcat, jetty ou Undertow ainsi qu'une base de données h2 de façon native 
   * Intégration de dépendance dite "starter" pour simplifier les configurations
   * Automatisation des configurations pour Spring et certaines librairies quand c'est possible
   * Management des dépendances pour éviter les problèmes de versionnages 
@@ -607,7 +607,7 @@ Cela ce fait dans le fichier application.properties de notre microservice en raj
 ## PostgreSQL
 spring.datasource.driverClassName=org.postgresql.Driver
 spring.datasource.url=jdbc:postgresql: l'adresse de votre base
-spring.datasource.username= le nom de votre base 
+spring.datasource.username= votre nom d'utilisateur
 spring.datasource.password= votre mot de passe
 
 #drop n create table again, good for testing, comment this in production
