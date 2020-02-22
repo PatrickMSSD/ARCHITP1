@@ -100,14 +100,14 @@ Spring Boot est donc un outil extrèmement intéressant pour créé des applicat
 
 ## Objectif du tutoriel
 
-  Dans ce tutoriel nous allons créé une application utilisant une architecture micro service à l'aide de Spring/Spring Boot. 
+  Dans ce tutoriel nous allons créé une application utilisant une architecture microservice à l'aide de Spring/Spring Boot. 
   
   Ces technologies sont très intéréssantes pour ce genre de projet pour plusieurs raisons : 
-  * Création rapide et facile de micro service près a l'emplois et deployable rapidement
+  * Création rapide et facile de microservice près a l'emplois et deployable rapidement
   * Grande flexibilité
-  * Configuration et monitoring simple des services ( edge ou micro ) grâce au grand nombre de module présent
+  * Configuration et monitoring simple des services (edge ou micro) grâce au grand nombre de module présent
   
-A la fin de ce tutoriel il vous sera possible de créer une application de gestion de collection simple avec une architecture micro service et API REST. Vous apprendrez aussi comment configurer les edges micro services suivant : Eureka pour le registre, Ribbon pour le load balancing et Zuul comme point d'accée proxy de votre applicaiton.
+A la fin de ce tutoriel il vous sera possible de créer une application de gestion de collection simple avec une architecture microservice et API REST. Vous apprendrez aussi comment configurer les edges microservices suivant : Eureka pour le registre, Ribbon pour le load balancing et Zuul comme point d'accée proxy de votre applicaiton.
 
  
 
@@ -131,19 +131,23 @@ Voici l'architecture de l'application, nous l'étofferons plus tard dans le proj
 
 ![Archicture](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/archi.png)
 
-Comme montrer sur la photo, le client va pouvoir communiquer avec le ms utilisateur et le ms collection, de plus les micro services pourront communiquer entre eux au besoin.
+Comme montrer sur la photo, le client va pouvoir communiquer avec le ms utilisateur et le ms collection, de plus les microservices pourront communiquer entre eux au besoin.
 
-MS Utilisateur : 
 
-Ce micro service va gérer les utilisateurs en général, leur inscription, leur connexion et les demandes d'informations relatives aux utilisateurs.
-
-MS Collection : 
-
-Ce micro service va gérer les collection, l'ajout de livre dans une collection pour un utilisateur, le retrait et la consultation d'une collection. 
-
-Le client : 
+**Le client : **
 
 Ce peut être un client tel qu'un naviguateur ou une API externe, dans notre cas nous simulerons l'utilisation du naviguateur par des requètes postman.
+
+**MS Utilisateur : **
+
+Ce microservice va gérer les utilisateurs en général, leur inscription, leur connexion et les demandes d'informations relatives aux utilisateurs (tel que leur id unique dans notre base de données par rapport à leur identifiant par exemple).
+
+**MS Collection :  **
+
+Ce microservice va gérer les collections, l'ajout de livre dans une collection pour un utilisateur, le retrait et la consultation d'une collection. 
+
+Comme les microservices sont des applications indépendantes et autonomes, chacun aura sa propre base de données ou il enregistrera les informations qu'il gère. Ce point sera développé plus tard lors de la création de nos micros services.
+
 
 
 
