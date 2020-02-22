@@ -123,13 +123,27 @@ Pour ce tutoriel nous allons utiliser différent outils :
 
 Comme définis précédemment nous allons nous intérésser à la création d'une application de gestion de collection très simple. 
 
-L'utilisateur de l'application pourra se connecter, emprunter un livre (c'est à dire l'ajouter à sa collection), rendre un livre (ce qui revient à l'enlever de sa collection) et consulter sa collection de livre.
+L'utilisateur de l'application pourra s'inscrire et se connecter, emprunter un livre (c'est à dire l'ajouter à sa collection), rendre un livre (ce qui revient à l'enlever de sa collection) et consulter sa collection de livre.
 
 
-Voici l'architecture de l'application, nous l'éttoferons plus tard dans le projet : 
+Voici l'architecture de l'application, nous l'étofferons plus tard dans le projet : 
 
 
 ![Archicture](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/archi.png)
+
+Comme montrer sur la photo, le client va pouvoir communiquer avec le ms utilisateur et le ms collection, de plus les micro services pourront communiquer entre eux au besoin.
+
+MS Utilisateur : 
+
+Ce micro service va gérer les utilisateurs en général, leur inscription, leur connexion et les demandes d'informations relatives aux utilisateurs.
+
+MS Collection : 
+
+Ce micro service va gérer les collection, l'ajout de livre dans une collection pour un utilisateur, le retrait et la consultation d'une collection. 
+
+Le client : 
+
+Ce peut être un client tel qu'un naviguateur ou une API externe, dans notre cas nous simulerons l'utilisation du naviguateur par des requètes postman.
 
 
 
