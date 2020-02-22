@@ -257,8 +257,48 @@ Pour cela cliquer droit sur le package , puis sur new > class et configurer la c
 Voici le code a placer dans cette classe : 
 
 ```java
+package fr.tse.myapp;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.ribbon.RibbonClient;
+
+
+@SpringBootApplication
+@EnableEurekaClient
+@RibbonClient(name = "ms_collection")
+public class App {
+
+	public static void main(String[] args) {
+		SpringApplication.run(App.class, args);
+	}
+
+
+}
 ```
+
+Lorsqu'on copie colle ce code directement dans eclipse, l'IDE nous renvois une erreure car il ne sait pas d'ou viennent ces annotations et comment elles marchent il faut donc lui dire ou les chercher. 
+Pour cela nous allons ajouter au pom.xml des dépendances sur les quels Spring / Spring Boot iront se basé pour configurer notre application automatiquement ! 
+
+```xml
+<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-autoconfigure -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-autoconfigure</artifactId>
+    <version>2.2.4.RELEASE</version>
+</dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+    <version>2.2.4.RELEASE</version>
+   </dependency>
+```
+
+De façon surprenant nous n'allons pas rajouter ces dépendances dans le pom.xml de notre microservice mais dans celui du projet n-1 c'est à dire MS. Les projets fils héritant des dépendances de leurs parents il est plus facile de placé ces dépendances au niveau n-1 et de ne pas les copier coller pour chaque microservice.
+
 
 
 3. Exécution 
