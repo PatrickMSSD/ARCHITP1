@@ -275,7 +275,8 @@ public class App {
 ```
 
 Lorsqu'on copie colle ce code directement dans eclipse, l'IDE nous renvois une erreure car il ne sait pas d'ou viennent ces annotations et comment elles marchent il faut donc lui dire ou les chercher. 
-Pour cela nous allons ajouter au pom.xml des dépendances sur les quels Spring / Spring Boot iront se basé pour configurer notre application automatiquement ! 
+
+Pour cela nous allons ajouter au pom.xml des dépendances sur les quels  Spring Boot ira se basé pour configurer notre application automatiquement ! 
 
 ```xml
 <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-autoconfigure -->
