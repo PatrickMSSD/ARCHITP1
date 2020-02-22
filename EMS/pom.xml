@@ -11,6 +11,7 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>ems_eureka</module>
+		<module>ems_zuul</module>
 	</modules>
 	<dependencies>
 
