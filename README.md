@@ -9,50 +9,49 @@ TP1 - Tutoriel de technologies emergentes
 
 ## Plan 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 **1. Présentation de la technologie**
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 **2. Objectifs du tutoriel - contexte, description et résultats/connaisses  attendus après  l’exécution**
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 **3. Tutoriel**
 
 
 ## Présentation de la technologie 
  
 ### Spring 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 Spring est un framework open source, créée en 2003 par Rod Johnson en tant qu'alternative à J2EE. Spring peut est considéré comme conteneur léger car les classes n'ont pas besoin d'implémenter une interface pour être pris en charge par le framework. Au cours de mise à jour, Spring a ajouté de nombreuses fonctionnalités pour répondre aux besoins des applications modernes comme la sécurité, l'utilisation de bases de données NosQL, le bigData,...
 Aujourd'hui, Spring n'est plus considéré comme un framework mais comme une plateforme viable pour créer des applications d'entreprises.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 Spring a initialement été créé comme container pour l'injection de dépendance en faisant de l'inversion de contrôle mais il a maintenant d'autres concepts clés qui sont présents par exemple : 
   * la programmation orienté aspect
   * une couche d’abstraction qui permet de faciliter l'intégration d'autres frameworks Java ou de librairies
   * la programmation suivant le patron MVC
   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 Avec Spring, il y a des sous-projets qui permettent de rendre Spring modulaire. Ces modules permettent aux développeurs de créer une application plus rapidement et de n'utiliser que les modules dont ils ont besoin. Les plus utiles sont par exemple : 
   * Spring Data : permet de simplifier l'accès aux bases de données relationnelles et NoSQL, 
   * Spring Security : permet de sécuriser facilement une application.
   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
   Nous allons maintenant présenter des concepts clés de Spring, certains modules et quelques outils.
   
 ##### Inversion of Control et Dependency Inversion 
 
 ###### Inversion of Control (IoC)
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
   L'inversion de contrôle ou Inversion of Control (IoC) en anglais est un patron d'architecture commun à de nombreux framework dont Spring/Spring Boot. 
 De façon grossière l'inversion de contrôle inverse le flow de du déroulement de l'application : ce n'est plus l'application qui déroule le code mais le code qui réagit à des événements lancés par le framework.
 
 ... Exemple ... 
 
 ###### Dependency Inversion (DI)
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
   L'inversion de dépendance ou Dependency Inversion (DI) en anglais est un paradigme utilisé pour faire de l'inversion de contrôle. Dans ce cas ce n'est pas le programmeur qui crée les instances de classe importante, c'est le framework qui va en crée une ou en fournir une déja existante.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 Exemple : 
 Voici ce que donnerait un exemple en Java sans injection de dépendance : ici l'instance de la classe Item est directement créé par l'appelle du **new** dans le constructeur, cette instance sera forcément du type ItemImpl1.
 
@@ -65,7 +64,7 @@ public class Store {
     }
 }
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 Dans le cas de l'inversion de dépendance, l'instanciation n'est pas faites directement dans le constructeur mais elle est passé en paramètre de ce dernier. Ainsi un objet store peut être créé avec différentes nouvelles implémentations de la classe Item  (ItemImpl1, ItemImpl2 etc...) ou avec une implémentation déja existante.
 
 ```java
@@ -87,13 +86,13 @@ Les bénèfices de l'IoC sont nombreux :
 
 ##### Spring Initilizr 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 Spring Initilizr est un site qui permet, permet en remplissant un formulaire de générer, en appuyant sur le bouton generate, une archive qui permet d'amorcer le projet. Il y a le fichier pom.xml qui a déjà les dépendances de bases dont on aura besoin en fonction de ce que l'on aura rempli dans le formulaire, l’arborescence du projet est déjà créée automatiquement le dossier pour le main, le dossier pour les tests, etc. Dans le dossier src il y a déjà le squelette d'une classe pour une application qui utilise Spring Boot. Si on ne souhaite pas générer tous ces fichiers on peut seulement les consulter en appuyant sur le bouton Explore.
 
 
 ##### Spring Testig 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 Spring Test est un module qui, comme son nom l'indique,  permet de tester son application. C'est un module qui contient beaucoup de façons de faire des tests pour plusieurs situations possibles. Il est possible de faire à la fois des tests unitaires mais aussi de l'intégration.
 Pour les tests unitaires, ce module offre des mocks objets avec des paquets dédiés :
   * pour une application qui dépend d'un environnement spécifique en dehors du container 
@@ -101,18 +100,17 @@ Pour les tests unitaires, ce module offre des mocks objets avec des paquets déd
   * pour les environnements web, controllers et filtre
   * pour les applications avec du WebFLux, on peut faire les tests sans avoir de serveur http
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 Spring offre aussi des classes pour faire des tests unitaires, 
   * ReflectionTestUtils : permet, par exemple, de changer les valeurs des constantes, modifier un champ qui est privé , invoquer des méthodes privées qui modifie champs (setter method) dans certains types d'application.
   * AopTestUtils :  permet de connaître des configurations qui sont faites automatiquement par Spring avec les annotations.
   * ModelAndViewAssert : avec la combinaison d'autres frameworks pour les tests unitaires permet de faire des tests plus facilement pour le module Spring MVC.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Ce module permet aussi de faire des tests d'intégrations.
 
 
 ### Spring Boot
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
   Spring boot est initialement un module du framework Spring mais peut être considéré comme un framework à part entière.
 Il permet de créer facilement des applications autonomes basées sur Spring grâce à ces fonctionnalités :
   
@@ -128,14 +126,15 @@ Spring Boot est donc un outil extrèmement intéressant pour créé des applicat
 
 
 ## Objectif du tutoriel
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
   Dans ce tutoriel nous allons créé une application utilisant une architecture microservice à l'aide de Spring/Spring Boot. 
   
   Ces technologies sont très intéréssantes pour ce genre de projet pour plusieurs raisons : 
   * Création rapide et facile de microservice près a l'emplois et deployable rapidement
   * Grande flexibilité
   * Configuration et monitoring simple des services (edge ou micro) grâce au grand nombre de module présent
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+
+
 A la fin de ce tutoriel il vous sera possible de créer une application de gestion de collection simple avec une architecture microservice et API REST. Vous apprendrez aussi comment configurer les edges microservices suivant : Eureka pour le registre, Ribbon pour le load balancing et Zuul comme point d'accée proxy de votre applicaiton.
 
  
@@ -143,7 +142,7 @@ A la fin de ce tutoriel il vous sera possible de créer une application de gesti
 ## Tutoriel
 ### Mise en place du projet
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 Pour ce tutoriel nous allons utiliser différent outils :
 
 * L'IDE [Eclipse](https://www.eclipse.org/eclipseide/)
@@ -151,66 +150,56 @@ Pour ce tutoriel nous allons utiliser différent outils :
 * [PostgreSQL](https://www.postgresql.org/download/) pour windows
 * [postman](https://www.postman.com/downloads/) qui est un outil extrèmement utile lors de l'utilisation d'API REST
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 Comme définis précédemment nous allons nous intérésser à la création d'une application de gestion de collection très simple. L'utilisateur de l'application pourra s'inscrire et se connecter, emprunter un livre (c'est à dire l'ajouter à sa collection), rendre un livre (ce qui revient à l'enlever de sa collection) et consulter sa collection de livre.
 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Voici l'architecture de l'application, nous l'étofferons plus tard dans le projet : 
 
 
 ![Architecture](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/archi.png)
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Comme montrer sur la photo, le client va pouvoir communiquer avec le ms utilisateur et le ms collection, de plus les microservices pourront communiquer entre eux au besoin.
 
 
 **Le client :**
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 Ce peut être un client tel qu'un naviguateur ou une API externe, dans notre cas nous simulerons l'utilisation du naviguateur par des requètes postman.
 
 **MS Utilisateur :**
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Ce microservice va gérer les utilisateurs en général, leur inscription, leur connexion et les demandes d'informations relatives aux utilisateurs (tel que leur id unique dans notre base de données par rapport à leur identifiant par exemple).
 
 **MS Collection :**
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 Ce microservice va gérer les collections, l'ajout de livre dans une collection pour un utilisateur, le retrait et la consultation d'une collection. 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Comme les microservices sont des applications indépendantes et autonomes, chacun aura sa propre base de données ou il enregistrera les informations qu'il gère. Ce point sera développé plus tard lors de la création de nos micros services.
 
 #### Création du projet 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Pour une meilleure visibilité nous allons décomposer le projet en différent sous projet, cette méthode de construction permet de même une meilleure modularité propice au changement.
 Voici l'arbre qui décrit l'architecture de notre projet : 
 
 ![ArchitectureFichier](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/archifichier.png)
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Nous allons commencé par créer un la racine : ARCHITP1 qui sera un projet maven. 
 Pour cela il faut se rendre sur eclipse puis dans la barre d'outil File > New > Project...
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 Séléctionner un projet Maven : 
 
 ![Maven](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/maven1.png)
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Séléctionner Maven Project
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 Cocher la case "Create a simple project" puis cliquer sur suivant.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Puis entrer le configuration tel ci dessous : 
 
 ![Maven2](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/maven2.PNG)
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Vous avez créer votre projet racine ! 
 
 Maintenant créons les sous projets MS et EMS : 
