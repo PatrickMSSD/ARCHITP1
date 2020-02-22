@@ -216,7 +216,7 @@ Ribbon n'est pas présent car il est directement intégré à nos microservices.
 
 Voici ce que devrait donner le résultat final : 
 
-![Résultat](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/résultat.png)
+![Résultat](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/résultat.PNG)
 
 2. Implémentation
 3. Exécution 
