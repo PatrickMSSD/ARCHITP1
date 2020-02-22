@@ -187,5 +187,19 @@ Puis entrer le configuration tel ci dessous :
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Vous avez créer votre projet racine ! 
 
+Maintenant créons les sous projets MS et EMS : 
+
+Pour MS, faites un clique droit sur le projet ARCHITP1 New > Project...
+
+Cette fois séléctionner Maven Module
+
+Cocher la case "Create a simple project" et entrer le nom MS puis cliquer sur suivant. 
+
+Changer le Packaging en pom et mettez le nom MS. 
+
+Cliquer sur Finish et faites de même pour le projet EMS.
+
+
+
 2. Implémentation
 3. Exécution 
