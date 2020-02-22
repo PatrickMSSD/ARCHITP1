@@ -169,7 +169,7 @@ Voici l'arbre qui décrit l'architecture de notre projet :
 Nous allons commencé par créer un la racine : ARCHITP1 qui sera un projet maven. 
 Pour cela il faut se rendre sur eclipse puis dans la barre d'outil File > New > Project...
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 Séléctionner un projet Maven : 
 
 ![Maven](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/maven1.png)
