@@ -99,15 +99,29 @@ Spring Boot est donc un outil extrèmement intéressant pour créé des applicat
 
 
 ## Objectif du tutoriel
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-L’objectif de ce tutoriel est d’implémenter facilement des microservices à l’aide du framework spring et un de ses sous framework springBoot.
-... Application micro service... 
-... Rapide def de micro service ...
-... Pourquoi spring est utile ici...
-... Présentation de l'application que l'on veut faire ...
 
+  Dans ce tutoriel nous allons créé une application utilisant une architecture micro service à l'aide de Spring/Spring Boot. 
+  
+  Ces technologies sont très intéréssantes pour ce genre de projet pour plusieurs raisons : 
+  * Création rapide et facile de micro service près a l'emplois et deployable rapidement
+  * Grande flexibilité
+  * Configuration et monitoring simple des services ( edge ou micro ) grâce au grand nombre de module présent
+  
+A la fin de ce tutoriel il vous sera possible de créer une application de gestion de collection simple avec une architecture micro service et API REST. Vous apprendrez aussi comment configurer les edges micro services suivant : Eureka pour le registre, Ribbon pour le load balancing et Zuul comme point d'accée proxy de votre applicaiton.
+
+ 
 
 ## Tutoriel
-1. Mise en place du projet
+### Mise en place du projet
+
+Pour ce tutoriel nous allons utiliser différent outils :
+
+* L'IDE [Eclipse] (https://www.eclipse.org/eclipseide/)
+* Maven	3.6.1 qui est directement intégré à Eclipse 
+* [PostgreSQL] (https://www.postgresql.org/download/) pour windows
+* [postman] (https://www.postman.com/downloads/) qui est un outil extrèmement utile lors de l'utilisation d'API REST
+
+
+
 2. Implémentation
 3. Exécution
