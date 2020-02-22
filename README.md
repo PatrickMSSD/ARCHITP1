@@ -134,15 +134,15 @@ Voici l'architecture de l'application, nous l'étofferons plus tard dans le proj
 Comme montrer sur la photo, le client va pouvoir communiquer avec le ms utilisateur et le ms collection, de plus les microservices pourront communiquer entre eux au besoin.
 
 
-**Le client : **
+**Le client :**
 
 Ce peut être un client tel qu'un naviguateur ou une API externe, dans notre cas nous simulerons l'utilisation du naviguateur par des requètes postman.
 
-**MS Utilisateur : **
+**MS Utilisateur :**
 
 Ce microservice va gérer les utilisateurs en général, leur inscription, leur connexion et les demandes d'informations relatives aux utilisateurs (tel que leur id unique dans notre base de données par rapport à leur identifiant par exemple).
 
-**MS Collection :  **
+**MS Collection :**
 
 Ce microservice va gérer les collections, l'ajout de livre dans une collection pour un utilisateur, le retrait et la consultation d'une collection. 
 
