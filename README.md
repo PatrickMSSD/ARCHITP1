@@ -117,6 +117,7 @@ A la fin de ce tutoriel il vous sera possible de créer une application de gesti
 ## Tutoriel
 ### Mise en place du projet
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Pour ce tutoriel nous allons utiliser différent outils :
 
 * L'IDE [Eclipse](https://www.eclipse.org/eclipseide/)
@@ -124,55 +125,66 @@ Pour ce tutoriel nous allons utiliser différent outils :
 * [PostgreSQL](https://www.postgresql.org/download/) pour windows
 * [postman](https://www.postman.com/downloads/) qui est un outil extrèmement utile lors de l'utilisation d'API REST
 
-Comme définis précédemment nous allons nous intérésser à la création d'une application de gestion de collection très simple. 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Comme définis précédemment nous allons nous intérésser à la création d'une application de gestion de collection très simple. L'utilisateur de l'application pourra s'inscrire et se connecter, emprunter un livre (c'est à dire l'ajouter à sa collection), rendre un livre (ce qui revient à l'enlever de sa collection) et consulter sa collection de livre.
 
-L'utilisateur de l'application pourra s'inscrire et se connecter, emprunter un livre (c'est à dire l'ajouter à sa collection), rendre un livre (ce qui revient à l'enlever de sa collection) et consulter sa collection de livre.
 
-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Voici l'architecture de l'application, nous l'étofferons plus tard dans le projet : 
 
 
 ![Architecture](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/archi.png)
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Comme montrer sur la photo, le client va pouvoir communiquer avec le ms utilisateur et le ms collection, de plus les microservices pourront communiquer entre eux au besoin.
 
 
 **Le client :**
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Ce peut être un client tel qu'un naviguateur ou une API externe, dans notre cas nous simulerons l'utilisation du naviguateur par des requètes postman.
 
 **MS Utilisateur :**
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Ce microservice va gérer les utilisateurs en général, leur inscription, leur connexion et les demandes d'informations relatives aux utilisateurs (tel que leur id unique dans notre base de données par rapport à leur identifiant par exemple).
 
 **MS Collection :**
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Ce microservice va gérer les collections, l'ajout de livre dans une collection pour un utilisateur, le retrait et la consultation d'une collection. 
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Comme les microservices sont des applications indépendantes et autonomes, chacun aura sa propre base de données ou il enregistrera les informations qu'il gère. Ce point sera développé plus tard lors de la création de nos micros services.
 
 #### Création du projet 
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Pour une meilleure visibilité nous allons décomposer le projet en différent sous projet, cette méthode de construction permet de même une meilleure modularité propice au changement.
-
 Voici l'arbre qui décrit l'architecture de notre projet : 
 
 ![ArchitectureFichier](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/archifichier.png)
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Nous allons commencé par créer un la racine : ARCHITP1 qui sera un projet maven. 
 Pour cela il faut se rendre sur eclipse puis dans la barre d'outil File > New > Project...
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Séléctionner un projet Maven : 
 
 ![Maven](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/maven1.png)
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Séléctionner Maven Project
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Cocher la case "Create a simple project" puis cliquer sur suivant.
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Puis entrer le configuration tel ci dessous : 
 
 ![Maven2](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/maven2.PNG)
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Vous avez créer votre projet racine ! 
 
 2. Implémentation
