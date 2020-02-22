@@ -483,6 +483,7 @@ Voici une courte explication des différentes annotations :
 
 @Column permet de définir et donner des noms au colone de notre table
 
+
 Les setteurs et getteurs sont importants, ainsi que le toString() car il permette l'échange d'instance de cette classe autonome.
 
 Ainsi avec ces simples annotations dans cette classe Spring Boot peut de lui même créer une table dans la base de données que nous lui fournirons !
@@ -572,6 +573,32 @@ Dans notre cas nous utilisons une base de données PostgreSQL pour le microservi
     <version>42.2.10</version>
 </dependency>
 ```
+
+
+Si vous avez l'oeil fin vous aurez remarqué que je parle de la classe CollectionRepository alors que dans le code elle est définis comme une intérface. Ainsi c'est bien une intérface mais grâce à Spring Boot et les dépendances que nous lui avons fournis nous n'avons pas à coder ses méthodes !
+
+@Repository annote cette classe comme un repository et joue le même rôle que le @Entity précédemment expliqué !
+
+Cette interface extend JpaRepository. Cette dernière est un module du framework Spring qui permet de facilement de manipuler des données. 
+
+Ansi la méthode save() de notre classe CollectionRepository est une méthode de ce module qui permet de sauvegarder une entrée dans la base de donnée par rapport au information contenue dans un objet. 
+
+Par exemple pour sauvegarder l'emprunt d'un livre par un utilisateur x nous allons créer un objet Collection avec les différentes informations nécéssaire et le passer en paramètre de la fonction save. 
+
+Il en est de même pour la méthode deleteByidBDD, la méthode deleteBy"Attribut" est une méthode du module JpaRepository.
+Il existe bien d'autre méthode de ce type.
+
+Ces deux méthodes vont servir à "emprunter" et "rendre" un livre. 
+
+La méthode getUserColletion permet de consulter la collection d'un utilisateur selon son identifiant unique. Cette méthode n'existe pas dans les modules il faut donc l'écrire. Ici encore Spring va nous faire gagner du temps ! 
+
+@Query permet d'écrire des queries, soit en JPQL par défaut soit dans le langage de votre base de données ( grâce au paramètre "nativeQuery=true") 
+
+Ainsi nous écrivons une query pour récupérer l'ensemble des entrées qui correspondent à l'id fournis. Cette méthode va retourner le résultat dans le return de la signature donc une Liste d'instance de Collection. Rien de plus simple !
+
+Les @Param font le lien entre le nom des paramètres de la méthode et leur appélation en base.
+
+
 
 
 
