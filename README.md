@@ -156,5 +156,19 @@ Voici l'arbre qui décrit l'architecture de notre projet :
 
 ![ArchitectureFichier](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/archifichier.png)
 
+Nous allons commencé par créer un la racine : ARCHITP1 qui sera un projet maven. 
+Pour cela il faut se rendre sur eclipse puis dans la barre d'outil File > New > Project...
+
+Séléctionner un projet Maven : 
+
+![Maven](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/maven1.png)
+
+Séléctionner Maven Project
+Cocher la case "Create a simple project" puis cliquer sur suivant.
+
+Puis entrer le configuration tel ci dessous. 
+![Maven2](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/maven2.png)
+Vous avez créer votre projet racine ! 
+
 2. Implémentation
 3. Exécution
