@@ -168,7 +168,7 @@ Cocher la case "Create a simple project" puis cliquer sur suivant.
 
 Puis entrer le configuration tel ci dessous : 
 
-![Maven2](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/maven2.png)
+![Maven2](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/maven2.PNG)
 
 Vous avez créer votre projet racine ! 
 
