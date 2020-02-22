@@ -35,7 +35,7 @@ Avec Spring, il y a des sous-projets qui permettent de rendre Spring modulaire. 
   * Spring Data : permet de simplifier l'accès aux bases de données relationnelles et NoSQL, 
   * Spring Security : permet de sécuriser facilement une application.
   
-
+ 
   Nous allons maintenant présenter des concepts clés de Spring, certains modules et quelques outils.
   
 ##### Inversion of Control et Dependency Inversion 
