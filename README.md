@@ -166,8 +166,10 @@ Séléctionner un projet Maven :
 Séléctionner Maven Project
 Cocher la case "Create a simple project" puis cliquer sur suivant.
 
-Puis entrer le configuration tel ci dessous. 
+Puis entrer le configuration tel ci dessous : 
+
 ![Maven2](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/maven2.png)
+
 Vous avez créer votre projet racine ! 
 
 2. Implémentation
