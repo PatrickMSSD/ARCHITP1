@@ -129,7 +129,7 @@ L'utilisateur de l'application pourra se connecter, emprunter un livre (c'est à
 Voici l'architecture de l'application, nous l'éttoferons plus tard dans le projet : 
 
 
-![Archicture]
+![Archicture](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/archi.png)
 
 
 
