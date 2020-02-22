@@ -23,15 +23,17 @@ TP1 - Tutoriel de technologies emergentes
 
 ### Spring 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  Spring est un framework open source créée en 2003 par Rod Johnson en tant qu'alternative à J2EE.
+Spring est un framework open source, créée en 2003 par Rod Johnson en tant qu'alternative à J2EE. Spring peut est considéré comme conteneur léger car les classes n'ont pas besoin d'implémenter une interface pour être pris en charge par le framework. Au cours de mise à jour, Spring a ajouté de nombreuses fonctionnalités pour répondre aux besoins des applications modernes comme la sécurité, l'utilisation de bases de données NosQL, le bigData,...
+Aujourd'hui, Spring n'est plus considéré comme un framework mais comme une plateforme viable pour créer des applications d'entreprises.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Spring a initialement été créé comme container pour l'injection de dépendance en faisant de l'inversion de contrôle mais il a maintenant d'autres concepts clés qui sont présents par exemple : 
+	* la programmation orienté aspect
+	* une couche d’abstraction qui permet de faciliter l'intégration d'autres frameworks Java ou de librairies
+	* la programmation suivant le patron MVC
 
-  ... ENCORE DU BLA BLA ...
-  
-  ... Petite historique...
-  
-  ... Point faible de J2EE... 
-  
-  ... Point fort de Spring ...
+Avec Spring, il y a des sous-projets qui permettent de rendre Spring modulaire. Ces modules permettent aux développeurs de créer une application plus rapidement et de n'utiliser que les modules dont ils ont besoin. Les plus utiles sont par exemple : 
+	* Spring Data : permet de simplifier l'accès aux bases de données relationnelles et NoSQL, 
+	* Spring Security : permet de sécuriser facilement une application.
   
 #### Inversion of Control et Dependency Inversion 
 
@@ -84,7 +86,7 @@ Les bénèfices de l'IoC sont nombreux :
 
 ### Spring Boot
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  Spring boot est initialement un modul du framework Spring mais peut être considéré comme un framework à part entière. 
+  Spring boot est initialement un module du framework Spring mais peut être considéré comme un framework à part entière.
 Il permet de créer facilement des applications autonomes basées sur Spring grâce à ces fonctionnalités :
   
   * Création d'application autonome
