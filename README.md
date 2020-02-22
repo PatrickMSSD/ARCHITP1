@@ -249,6 +249,8 @@ Voici à quoi devrait ressembler le résultat final :
 
 ![Package](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/package.PNG)
 
+**La classe principale**
+
 Une fois cela fait nous pouvons créer la classe App.java dans le package racine fr.tse.myapp. 
 Pour cela cliquer droit sur le package , puis sur new > class et configurer la classe comme l'image ci-dessous (ne pas oubliez de cocher **public static void main** 
 
@@ -328,13 +330,17 @@ et ainsi avec ces quelques lignes de code nous avons une application Spring déj
 
 **Application.properties**
 
-Ce fichier, que vous devez créez dans le dossier src/main/resources (clique droit > new > file et application.properties comme nom) permet de faire certaine configuration soit même.
+Ce fichier, que vous devez créer dans le dossier src/main/resources (clique droit > new > file et application.properties comme nom) permet de faire certaine configuration soit même.
 Par exemple il permet de définir le nom de notre application et le port du serveur Tomcat sur le quel il écoute. Ainsi nous allons ajouter ces lignes : 
 
 ```xml
 spring.application.name=ms_collection
 server.port = 8083
 ```
+
+Il nous sera assez utile pour le configuration de connexion à la base de données et aux différents edge microservices.
+
+
 
 
 
