@@ -129,7 +129,7 @@ L'utilisateur de l'application pourra s'inscrire et se connecter, emprunter un l
 Voici l'architecture de l'application, nous l'étofferons plus tard dans le projet : 
 
 
-![Archicture](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/archi.png)
+![Architecture](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/archi.png)
 
 Comme montrer sur la photo, le client va pouvoir communiquer avec le ms utilisateur et le ms collection, de plus les microservices pourront communiquer entre eux au besoin.
 
@@ -148,8 +148,13 @@ Ce microservice va gérer les collections, l'ajout de livre dans une collection 
 
 Comme les microservices sont des applications indépendantes et autonomes, chacun aura sa propre base de données ou il enregistrera les informations qu'il gère. Ce point sera développé plus tard lors de la création de nos micros services.
 
+#### Création du projet 
 
+Pour une meilleure visibilité nous allons décomposer le projet en différent sous projet, cette méthode de construction permet de même une meilleure modularité propice au changement.
 
+Voici l'arbre qui décrit l'architecture de notre projet : 
+
+![ArchitectureFichier](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/archifichier.png)
 
 2. Implémentation
 3. Exécution
