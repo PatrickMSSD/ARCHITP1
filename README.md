@@ -227,15 +227,15 @@ Pour cela nous allons commencé par le microservices ms_collection :
 Dans un premier temps nous allons créer différent package toujours dans un soucis de modularité. 
 Il y en aura 5 : 
 
-Le package **fr.tse.myapp** sera le package racine, il contiendra la classe App.java qui sera le point d'entrée de notre microservice
+* Le package **fr.tse.myapp** sera le package racine, il contiendra la classe App.java qui sera le point d'entrée de notre microservice
 
-Le package **fr.tse.myapp.api** sera le package qui contiendra l'ensemble de nos classe de routing
+* Le package **fr.tse.myapp.api** sera le package qui contiendra l'ensemble de nos classe de routing
 
-Le package **fr.tse.myapp.domain** sera le package qui contiendra l'ensemble de nos classes d'objet tel que des POJO ou encore les classes représentant les instances a transmettre sur le réseau
+* Le package **fr.tse.myapp.domain** sera le package qui contiendra l'ensemble de nos classes d'objet tel que des POJO ou encore les classes représentant les instances a transmettre sur le réseau
 
-Le package **fr.tse.myapp.repository** sera le package qui contiendra l'ensemble des classes utilisés pour communiquer avec nos bases de données 
+* Le package **fr.tse.myapp.repository** sera le package qui contiendra l'ensemble des classes utilisés pour communiquer avec nos bases de données 
 
-Le package **fr.tse.myapp.service** sera le package qui contiendra l'ensemble des classes contenant le code métier
+* Le package **fr.tse.myapp.service** sera le package qui contiendra l'ensemble des classes contenant le code métier
 
 
 On peut remarquer une similitude entre nos packages et le modele MVC. 
@@ -326,7 +326,15 @@ Nous pouvons maintenant lancer l'application avec clique droit sur la classe Run
 et ainsi avec ces quelques lignes de code nous avons une application Spring déja fonctionelle sur serveur Tomcat. 
 
 
+**Application.properties**
 
+Ce fichier, que vous devez créez dans le dossier src/main/resources (clique droit > new > file et application.properties comme nom) permet de faire certaine configuration soit même.
+Par exemple il permet de définir le nom de notre application et le port du serveur Tomcat sur le quel il écoute. Ainsi nous allons ajouter ces lignes : 
+
+```xml
+spring.application.name=ms_collection
+server.port = 8083
+```
 
 
 
