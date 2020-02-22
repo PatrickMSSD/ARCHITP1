@@ -218,5 +218,43 @@ Voici ce que devrait donner le résultat final :
 
 ![Projet](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/projet.PNG)
  
-2. Implémentation
+### Implémentation
+
+Il est enfin temps de coder nos microservices ! 
+
+Pour cela nous allons commencé par le microservices ms_collection : 
+
+Dans un premier temps nous allons créer différent package toujours dans un soucis de modularité. 
+Il y en aura 5 : 
+
+Le package **fr.tse.myapp** sera le package racine, il contiendra la classe App.java qui sera le point d'entrée de notre microservice
+Le package **fr.tse.myapp.api** sera le package qui contiendra l'ensemble de nos classe de routing
+Le package **fr.tse.myapp.domain** sera le package qui contiendra l'ensemble de nos classes d'objet tel que des POJO ou encore les classes représentant les instances a transmettre sur le réseau
+Le package **fr.tse.myapp.repository** sera le package qui contiendra l'ensemble des classes utilisés pour communiquer avec nos bases de données 
+Le package **fr.tse.myapp.service** sera le package qui contiendra l'ensemble des classes contenant le code métier
+
+
+On peut remarquer une similitude entre nos packages et le modele MVC. 
+
+Il est important que l'ensemble des packages ai la même racine, ici **fr.tse.myapp**. Cela permet a Spring Boot de repérer l'ensemble des classes dans notre projet avec une configuration minimale de notre part.
+
+Pour créer un package c'est simple : cliquer droit sur src/main/java dans le sous projet ms_collection, puis sur new > package
+Entrer le nom de votre package puis finish. 
+
+Voici à quoi devrait ressembler le résultat final : 
+
+![Package](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/package.PNG)
+
+Une fois cela fait nous pouvons créer la classe App.java dans le package racine fr.tse.myapp. 
+Pour cela cliquer droit sur le package , puis sur new > class et configurer la classe comme l'image ci-dessous (ne pas oubliez de cocher **public static void main** 
+
+![Package](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/App.PNG)
+
+Voici le code a placer dans cette classe : 
+
+```java
+
+```
+
+
 3. Exécution 
