@@ -261,13 +261,9 @@ package fr.tse.myapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.netflix.ribbon.RibbonClient;
 
 
 @SpringBootApplication
-@EnableEurekaClient
-@RibbonClient(name = "ms_collection")
 public class App {
 
 	public static void main(String[] args) {
@@ -294,10 +290,38 @@ Pour cela nous allons ajouter au pom.xml des dépendances sur les quels Spring /
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-web</artifactId>
     <version>2.2.4.RELEASE</version>
-   </dependency>
+</dependency>
 ```
 
 De façon surprenant nous n'allons pas rajouter ces dépendances dans le pom.xml de notre microservice mais dans celui du projet n-1 c'est à dire MS. Les projets fils héritant des dépendances de leurs parents il est plus facile de placé ces dépendances au niveau n-1 et de ne pas les copier coller pour chaque microservice.
+
+On peut alors remarquer que l'erreur n'apparait plus ! 
+
+Au niveau du code nous avons deux différences par rapport à un main normal : 
+
+**@SpringBootApplication** 
+
+Est une annotation de Spring Boot  qui regroupe les annotations suivantes : 
+	* @EnableAutoConfiguration qui permet le méchanisme d'auto configuration de Spring Boot. Ce dernier va configurer notre appliaction Spring automatiquement selon les dépendences que nous avons ajouté à notre projet !
+	* @ComponentScan permet de scanner le package ( ou l'ensemble de sous package dans notre cas) ou l'application se trouve et ainsi localiser l'ensemble des éléments (classe, interface ...)
+	* @Configuration qui permet d'enregistrer et d'importer nos propres classes de configuration
+	
+	
+```java
+	public static void main(String[] args) {
+		SpringApplication.run(App.class, args);
+	}
+}
+```
+
+Permet de définir le point d'entrée de notre application Spring ! 
+
+
+Nous pouvons maintenant lancer l'application avec clique droit sur la classe Run As > 1 Java Application
+et ainsi avec ces quelques lignes de code nous avons une application Spring déja fonctionelle sur serveur Tomcat. 
+
+
+
 
 
 
