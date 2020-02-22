@@ -317,7 +317,7 @@ On peut alors remarquer que l'erreur n'apparait plus !
 
 Au niveau du code nous avons deux différences par rapport à un main normal : 
 
-**@SpringBootApplication** 
+1. **@SpringBootApplication** 
 
 Est une annotation de Spring Boot  qui regroupe les annotations suivantes : 
 
@@ -327,7 +327,7 @@ Est une annotation de Spring Boot  qui regroupe les annotations suivantes :
 	
 * @Configuration qui permet d'enregistrer et d'importer nos propres classes de configuration
 
-**SpringApplication.run(App.class, args)**
+2. **SpringApplication.run(App.class, args)**
 	
 ```java
 	public static void main(String[] args) {
@@ -356,6 +356,222 @@ server.port = 8083
 Il nous sera assez utile pour le configuration de connexion à la base de données et aux différents edge microservices.
 
 
+**Repository**
+
+Le package repository est le package qui gère les questions de données. Avec Spring / Spring boot cela ce fait très facilement.
+
+Pour les microservices il faut tenter de faire des bases de données au plus simple, ainsi pour notre microservice collection nous aurons une unique base avec une unique table et des entrées du type :
+
+
+| idBDD | idLivre | idUser | Date de Retour |
+
+Avec idBDD l'id unique de l'entrée en base
+
+idLivre l'id unique du livre
+
+idUser l'id unique de l'utilisateur 
+
+Date de Retour étant la date de retour du livre
+
+Pour créer cette base de données c'est très simple à faire avec Spring / Spring Boot : il n'y a pas besoin d'écrire soit même un schéma de base ou faire la création à la main faire à la main. Il suffit de faire une classe avec les bonnes annotations et Spring Boot se chargera du reste pour nous. 
+
+Voici la classe Collection créée dans le package domain : 
+
+
+```java
+package fr.tse.myapp.domain;
+
+import javax.persistence.*;;
+
+@Entity
+@Table(name = "Collections")
+public class Collection {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idBDD")
+	private long idBDD;
+	
+	@Column(name = "idLivre")
+	private long idLivre;
+	
+	@Column(name = "idUser")
+	private long idUser;
+	
+	@Column(name = "dateRetour")
+	private String dateRetour;
+
+	
+
+	public Collection(long idLivre, long idUser, String dateRetour) {
+		super();
+		this.idLivre = idLivre;
+		this.idUser = idUser;
+		this.dateRetour = dateRetour;
+	}
+
+	public Collection() {
+		
+	}
+
+	
+	
+	public long getIdLivre() {
+		return idLivre;
+	}
+
+	public void setIdLivre(long idLivre) {
+		this.idLivre = idLivre;
+	}
+
+	public long getIdBDD() {
+		return idBDD;
+	}
+
+	public void setIdBDD(long idBDD) {
+		this.idBDD = idBDD;
+	}
+
+	public long getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(long idUser) {
+		this.idUser = idUser;
+	}
+
+	public String getDateRetour() {
+		return dateRetour;
+	}
+
+	public void setDateRetour(String dateRetour) {
+		this.dateRetour = dateRetour;
+	}
+
+	@Override
+	public String toString() {
+		return "Collection [idBDD=" + idBDD + ", idLivre=" + idLivre + ", idUser=" + idUser + ", dateRetour="
+				+ dateRetour + "]";
+	}
+
+	
+
+}
+```
+
+Pour pouvoir utiliser l'ensemble de ces annotations il est nécéssaire de rajouter la dépendance suivante à notre microservice : 
+
+```xml
+<!-- https://mvnrepository.com/artifact/org.eclipse.persistence/javax.persistence -->
+    <dependency>
+        <groupId>org.eclipse.persistence</groupId>
+        <artifactId>javax.persistence</artifactId>
+        <version>2.2.1</version>
+    </dependency>
+```
+
+
+Voici une courte explication des différentes annotations : 
+
+@Entity défini la classe comme une entité, elle sera donc trouvé par @ComponentScan
+
+@Table permet de donner un nom à la table, donner un schéma de construction particulier etc
+
+@Id définis la clef primaire de notre table 
+
+@GeneratedValue permet de définir une stratégie de génération pour cette attribut, ici c'est une génération de type identitaire donc unique et incrémentale
+
+@Column permet de définir et donner des noms au colone de notre table
+
+Les setteurs et getteurs sont importants, ainsi que le toString() car il permette l'échange d'instance de cette classe autonome.
+
+Ainsi avec ces simples annotations dans cette classe Spring Boot peut de lui même créer une table dans la base de données que nous lui fournirons !
+
+
+Maintenant intéréssons nous à la classe CollectionRepository du package repository qui va justement utiliser cette classe Collection : 
+
+**CollectionRepository** 
+
+Cette classe gère l'ensemble des intéractions avec la base de données du microservice.
+
+Voici son code : 
+
+```java
+package fr.tse.myapp.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import fr.tse.myapp.domain.Collection;
+
+@Repository
+public interface CollectionRepository extends JpaRepository<Collection,String> {
+	
+
+	
+	@SuppressWarnings("unchecked")
+	public Collection save(Collection col);
+	
+	
+	
+	public void deleteByidBDD(long idLivre);
+	
+	
+	
+	@Query(nativeQuery=true,value = "SELECT * FROM Collections a WHERE a.id_user = :id_user")
+	public List<Collection> getUserCollection(@Param("id_user") long idUser);
+	
+	
+	
+}
+
+```
+
+et voici les dépendances dont elle a besoin : 
+
+
+```xml
+<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
+<dependency>
+    <groupId>org.springframeworkta</groupId>
+    <artifactId>spring-data-jpa</artifactId>
+    <version>2.2.4.RELEASE</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+    <version>2.2.4.RELEASE</version>
+</dependency>
+
+
+
+<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+<dependency>
+    <groupId>javax.xml.bind</groupId>
+    <artifactId>jaxb-api</artifactId>
+    <version>2.3.1</version>
+</dependency>
+```
+
+
+Celle-ci seront placée dans le pom.xml de MS car elles peuvent être utile pour l'ensemble des microservices.
+
+Dans notre cas nous utilisons une base de données PostgreSQL pour le microservice collection ainsi nous rajoutons la dépendance suivante dans son pom.xml : 
+
+```xml
+<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+<dependency>
+    <groupId>org.postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+    <version>42.2.10</version>
+</dependency>
+```
 
 
 
