@@ -958,12 +958,12 @@ Et avec pgAdmin nous pouvons vérifier que l'utilisateur à bien été créé da
 ```SQL
 SELECT * FROM Utilisateurs
 ```
-Nous avons construit une application sous forme d’architecture assez simple mais Spring / Spring boot nous de permet de l’étoffer facilement grâce a des dépendances tel que Spring Cloud !
+Nous avons construit une application sous forme d’architecture assez simple mais Spring / Spring boot nous de permet de l’étoffer facilement grâce à des dépendances tel que Spring Cloud !
 
 **Eureka**
 
 
-Eureka est un edge microservice qui sert de registre des microservice mais aussi des instances de chaque microservices. Il est ainsi possible de monitorer notre application lors de monter en charge par exemple.
+Eureka est un edge microservice qui sert de registre des microservices et de leurs instances. Il est ainsi possible de monitorer notre application lors de monter en charge par exemple.
 
 L’installation de ce registre est assez simple, grâce à Spring Boot. La première étape est la configuration du serveur Eureka pour cela nous allons créer un nouveau sous module maven dans le projet EMS de la même façon que nous avons créé nos microservices. Nous l’appellerons ems_eureka. Il faudra ensuite créer sa classe principale appelée EurekaServerApplication.
 
