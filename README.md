@@ -958,4 +958,127 @@ Et avec pgAdmin nous pouvons vérifier que l'utilisateur à bien été créé da
 ```SQL
 SELECT * FROM Utilisateurs
 ```
+Nous avons construit une application sous forme d’architecture assez simple mais Spring / Spring boot nous de permet de l’étoffer facilement !
 
+**Eureka**
+
+Eureka est un edge microservice qui sert de registre des microservice mais aussi des instances de chaque microservices. Il est ainsi possible de monitorer notre application lors de monté en charge par exemple. 
+
+L’installation de ce registre est assez simple, grâce à Spring Boot. La première étape est la configuration du serveur Eureka pour cela nous allons créer un nouveau sous module maven dans le projet EMS de la même façon que nous avons créé nos microservices. Nous l’appelerons ems_eureka. Il faudra ensuite créer sa classe principal appelé EurekaServerApplication.
+
+Nous allons ensuites créér son fichier application.properties et y placé ce code : 
+
+```xml
+server.port:9102
+
+spring.application.name=eureka-server
+eureka.client.serviceUrl.defaultZone:http://localhost:9102/eureka/
+eureka.client.registerWithEureka:false
+eureka.client.fetchRegistry:false
+```
+Pour définir le port du serveur, son nom. 
+La troisième ligne permet de configurer l’adresse d’eureka, c’est utile lorsque plusieurs instances de notre registre sont allumées.
+Les deux dernières sont à false car nous n’utilisons pas Eureka en mode cluster.
+
+Voici le code de la classe principale de notre application :
+```java
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+
+@SpringBootApplication
+@EnableEurekaServer
+public class EurekaServerApplication {
+
+  public static void main(String[] args) {
+      SpringApplication.run(EurekaServerApplication.class, args);
+  }
+}
+```
+et voici les dépendances à ajouter :
+
+```xml
+<dependencies>
+		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-eureka-server -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-core</artifactId>
+			<version>2.3.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+
+
+
+	</dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-parent</artifactId>
+				<version>Greenwich.RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+```
+
+Et nous avons tout simplement créer notre registre que vous pouvez lancer comme une applications java et le retrouver à l'adresse http://localhost:9102
+
+Maintenant pour chacun de nos microservices à monitorer il faudra faire les modifications suivantes : 
+
+* Ajouter la dépendence suivante : 
+
+```xml
+<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-eureka-client -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+			<version>2.2.1.RELEASE</version>
+		</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.6</version>
+		</dependency>
+
+```
+
+* Ajouter cette ligne de configuration dans le fichier application.properties :
+
+```xml
+#Eureka
+eureka.client.serviceUrl.defaultZone: http://localhost:9102/eureka/
+```
+
+* Ajouter l'annotation @EnableDiscoveryClient dans la classe principale 
+
+
+
+Ainsi en lançant Eureka puis vos microservices vous les verrez apparaitres sur la page d'Eureka : 
+
+![](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/projet.PNG)
