@@ -1087,10 +1087,11 @@ Ainsi en lançant Eureka puis vos microservices vous les verrez apparaitres sur 
 **Ribbon** 
 
 Ribbon est un load balancer coté client, comme son nom l'indique il permet de répartir la charge entre les différentes instances des différents microservices.
+Pour notre applications, postman faisant office de client il n'est pas possible de l'implémenter, mais vous pouvez toujours essayer d'implémenter un FeignClient pour utiliser Ribbon :).
 
 Pour l'ajouter c'est assez simple : 
 
-* Pour chaque microservice il faut ajouter la dépendance suivante : 
+* Au client il faut ajouter la dépendance suivante : 
 
 ```xml
 <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-ribbon -->
