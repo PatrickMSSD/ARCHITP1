@@ -494,7 +494,8 @@ Maintenant intéréssons nous à la classe CollectionRepository du package repos
 
 **CollectionRepository** 
 
-Cette classe gère l'ensemble des intéractions avec la base de données du microservice.
+
+Cette classe gère l'ensemble des intéractions avec la base de données du microservice, nous allons la créer dans le package fr.tse.myapp.repository.
 
 Voici son code : 
 
@@ -619,7 +620,156 @@ spring.jpa.hibernate.ddl-auto=create
 
 Les trois dernières lignes sont très intéréssantes en production car elles permettent de recréer la table pour test à chaque lancement de l'application.
 
+De cette façon se conclue la partie Repository, nous allons donc passer à la partie Service ! 
 
+
+**Service**
+
+Le package service est le package qui gère l'ensemble du code métier. la classe CollectionService est un lien entre l'API et le repository, c'est dans celle-ci que nous devrons faire les tranformations de données, le tri etc... ainsi elle aura pour attribut un objet de type CollectionRepository pour pouvoir appelé les méthodes save(), deleteByIDBB(), et getUserCollection().
+
+Voici le code de la classe : 
+```java
+package fr.tse.myapp.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import fr.tse.myapp.domain.Collection;
+import fr.tse.myapp.domain.UserDTO;
+import fr.tse.myapp.repository.CollectionRepository;
+
+@Service
+public class CollectionService {
+
+	@Autowired
+	CollectionRepository collectionRepository;
+
+	public void emprunterUnLivre(long idLivre, String email, String mdp) {
+
+		RestTemplate restTemplate = new RestTemplate();
+
+		UserDTO userReq = new UserDTO(email, mdp);
+		UserDTO userRep = new UserDTO();
+
+		userRep = restTemplate.postForObject("http://localhost:8082/Connexion", userReq, UserDTO.class);
+
+		Collection maCol = new Collection(idLivre, userRep.getIdBDD(), "oui");
+		collectionRepository.save(maCol);
+
+	}
+
+	public void rendreUnLivre(long idLivre) {
+		
+
+		collectionRepository.deleteByidBDD(idLivre);
+		
+	}
+
+	public String getCollection(String email, String mdp) {
+		List<Collection> maCollection = new ArrayList<Collection>();
+		
+		RestTemplate restTemplate = new RestTemplate();
+
+		UserDTO userReq = new UserDTO(email, mdp);
+		UserDTO userRep = new UserDTO();
+
+		userRep = restTemplate.postForObject("http://localhost:8082/Connexion", userReq, UserDTO.class);
+
+		maCollection = collectionRepository.getUserCollection(userRep.getIdBDD());
+		
+		return maCollection.toString();
+		
+	}
+		
+}
+
+```
+
+Dans cette classe nous pouvons retrouver plusieurs points intéréssant : 
+
+* L'annotation @Service ayant les mêmes fonctions que les annotations @Repository et @Entity précédente.
+* L'annotation @Autowired qui permet de faire de l'inversion de dépendance, la classe CollectionService devant appeler une instance de la classe CollectionRepository. De cette manière le couplage entre les deux classes est réduit et une instance de CollectionRepository est passé dès que celle ci est disponible. 
+* L'utilisation du RestTemplate pour récupérer des informations du microservice ms_user : On peut remarquer que l'on envoit et reçois des objets userReq et userRep de la classe UserDTO du package domain. Ces objets correspondent au body d'une requéte REST envoyé au microservice et au body de sa réponse. Spring Boot permet encore une fois de lui même de sérialiser des objets et les désérialiser de façon simple et facile. Pour ce faire les classes doivent comporter des constructeurs, setteur, getteur et toString(). Ces classes peuvent être assez général car Spring permet d'ignorer les champs vides facilement.
+
+
+Cette classe permet d'emprunter un livre, en faisant appel au microservice Utilisateur pour avoir certaines informations (tel que son id), de retourner un livre en faisant appel à la methode deleteByIdBDD ou de consulter la collection d'un utilisateur grâce à l'objet CollectionRepository
+
+**API**
+
+Le package API gère le routage vers le microservice. La classe CollectionApi gère les routes vers le microservice Collection et les actions à faire lors d'une requête vers une des routes. Ainsi cette classe doit avoir accée à une instance de la classe CollectionService pour pouvoir faire appel à ses méthodes.
+
+Voici le code de la classe : 
+
+```java
+package fr.tse.myapp.api;
+
+import java.io.IOException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import fr.tse.myapp.domain.ReqEmprunt;
+import fr.tse.myapp.domain.UserDTO;
+import fr.tse.myapp.service.CollectionService;
+
+@RestController
+public class CollectionApi {
+
+	@Autowired
+	CollectionService collectionService;
+	
+	@RequestMapping(path = "ping", method = RequestMethod.GET)
+	public String ping() {
+		return "pong";
+	}
+	
+	@RequestMapping(path = "Emprunter", method = RequestMethod.POST, consumes = {"application/json"},produces = {"application/json"})
+	public String emprunter(@RequestBody ReqEmprunt req) throws IOException {
+		this.collectionService.emprunterUnLivre(req.getIdLivre(), req.getEmail(), req.getMdp());
+		return("Livre emprunter");
+	}
+	
+	@RequestMapping(path = "Rendre", method = RequestMethod.POST, consumes = {"application/json"},produces = {"application/json"})
+	public String rendre(@RequestBody ReqEmprunt req) throws IOException {
+		this.collectionService.rendreUnLivre(req.getIdLivre());
+		return("Livre rendu");
+	}
+	
+	@RequestMapping(path = "Consulter", method = RequestMethod.POST, consumes = {"application/json"},produces = {"application/json"})
+	public String consulter(@RequestBody UserDTO user) throws IOException {
+		
+		return this.collectionService.getCollection(user.getEmail(), user.getMdp());
+	}
+
+}
+```
+
+Les points intéréssant de classe sont les suivants : 
+
+* @RestController qui permet d'enregistrer cette classe en tant que Rest Controller
+* @Autowired pour l'inversion de dépendance
+* @RequestMapping qui permet de définir la route vers notre application :
+	1. path permet de définir le chemin 
+	2. method permet de choisir à quel verbe http correspond la méthode
+	3. consumes permet de définir quel type d'objet la méthode consomme en entré (json, xml ...) de même pour produce qui définis ce que la méthode produit en sortie
+	
+A cette route définie par @RequestMapping va s'appliquer la méthode définis en dessous et retourner l'objet suivant le "return".
+
+Par exemple le chemin http://localhost:8082/ping appelle la fonction ping qui va retourner un objet de type String = "pong". Celui ci va être sérialiser et envoyer sur le réseau.
+
+Ainsi lorsqu'on veut consulter la collection d'un utilisateur, nous allons taper l'adresse http://localhost:8082/Consulter avec dans le body de la requète un json qui sera désérialiser en objet userDTO. Cette objet va être passé en tant que paramètre de la méthode consulter qui va appelé la méthode getCollection de l'instance CollectionService. A la fin de cette fonction la méthode va retourner une réponse de type json contenant dans son body un String correspondant à la collection de l'utilisateur.
+
+
+
+
+Et c'est finalement ainsi que nous pouvons contruire une application compléte avec Spring / Spring Boot.
 
 
 3. Exécution 
