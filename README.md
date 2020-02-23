@@ -962,11 +962,12 @@ Nous avons construit une application sous forme d’architecture assez simple ma
 
 **Eureka**
 
-Eureka est un edge microservice qui sert de registre des microservice mais aussi des instances de chaque microservices. Il est ainsi possible de monitorer notre application lors de monté en charge par exemple. 
 
-L’installation de ce registre est assez simple, grâce à Spring Boot. La première étape est la configuration du serveur Eureka pour cela nous allons créer un nouveau sous module maven dans le projet EMS de la même façon que nous avons créé nos microservices. Nous l’appelerons ems_eureka. Il faudra ensuite créer sa classe principal appelé EurekaServerApplication.
+Eureka est un edge microservice qui sert de registre des microservice mais aussi des instances de chaque microservices. Il est ainsi possible de monitorer notre application lors de monter en charge par exemple.
 
-Nous allons ensuites créér son fichier application.properties et y placé ce code : 
+L’installation de ce registre est assez simple, grâce à Spring Boot. La première étape est la configuration du serveur Eureka pour cela nous allons créer un nouveau sous module maven dans le projet EMS de la même façon que nous avons créé nos microservices. Nous l’appellerons ems_eureka. Il faudra ensuite créer sa classe principale appelée EurekaServerApplication.
+
+Nous allons ensuite créer son fichier application.properties et y placer ce code :
 
 ```xml
 server.port:9102
@@ -977,7 +978,7 @@ eureka.client.registerWithEureka:false
 eureka.client.fetchRegistry:false
 ```
 Pour définir le port du serveur, son nom. 
-La troisième ligne permet de configurer l’adresse d’eureka, c’est utile lorsque plusieurs instances de notre registre sont allumées.
+La troisième ligne permet de configurer l’adresse d’Eureka, c’est utile lorsque plusieurs instances de notre registre sont allumées.
 Les deux dernières sont à false car nous n’utilisons pas Eureka en mode cluster.
 
 Voici le code de la classe principale de notre application :
@@ -1045,7 +1046,7 @@ et voici les dépendances à ajouter :
 	</dependencyManagement>
 ```
 
-Et nous avons tout simplement créer notre registre que vous pouvez lancer comme une applications java et le retrouver à l'adresse http://localhost:9102
+Et nous avons tout simplement créer notre registre que vous pouvez lancer comme une application java et le retrouver à l'adresse http://localhost:9102
 
 Maintenant pour chacun de nos microservices à monitorer il faudra faire les modifications suivantes : 
 
@@ -1087,7 +1088,7 @@ Ainsi en lançant Eureka puis vos microservices vous les verrez apparaitres sur 
 **Ribbon** 
 
 Ribbon est un load balancer coté client, comme son nom l'indique il permet de répartir la charge entre les différentes instances des différents microservices.
-Pour notre applications, postman faisant office de client il n'est pas possible de l'implémenter, mais vous pouvez toujours essayer d'implémenter un FeignClient pour utiliser Ribbon :).
+Pour notre application, postman faisant office de client il n'est pas possible de l'implémenter, mais vous pouvez toujours essayer d'implémenter un FeignClient pour utiliser Ribbon :).
 
 Pour l'ajouter c'est assez simple : 
 
