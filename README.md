@@ -770,6 +770,16 @@ Ainsi lorsqu'on veut consulter la collection d'un utilisateur, nous allons taper
 
 
 Et c'est finalement ainsi que nous pouvons contruire une application compléte avec Spring / Spring Boot.
+Vous pouvez faire de même avec ms_user ou importer le code fournis dans ce projet.
+
+### Exécution 
+
+L'execution est assez simple :
+* Lancer la base de données de chaque microservice.
+* Sur Eclipse, il suffit de lancer nos deux microservices en tant que Java application comme précédement 
+* Tester avec postman.
+
+Voici ce que devrait être le résultat : 
 
 
-3. Exécution 
+![json](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/json.PNG)
