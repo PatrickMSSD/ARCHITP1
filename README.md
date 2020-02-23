@@ -44,16 +44,15 @@ Avec Spring, il y a des sous-projets qui permettent de rendre Spring modulaire. 
 
   L'inversion de contrôle ou Inversion of Control (IoC) en anglais est un patron d'architecture commun à de nombreux framework dont Spring/Spring Boot. 
 De façon grossière l'inversion de contrôle inverse le flow de du déroulement de l'application : ce n'est plus l'application qui déroule le code mais le code qui réagit à des événements lancés par le framework.
-
-... Exemple ... 
+ 
 
 ###### Dependency Inversion (DI)
 
-  L'inversion de dépendance ou Dependency Inversion (DI) en anglais est un paradigme utilisé pour faire de l'inversion de contrôle. Dans ce cas ce n'est pas le programmeur qui crée les instances de classe importante, c'est le framework qui va en crée une ou en fournir une déja existante.
+L'inversion de dépendance ou Dependency Inversion (DI) en anglais est un paradigme utilisé pour faire de l'inversion de contrôle. Dans ce cas ce n'est pas le programmeur qui crée les instances de classe importante, c'est le framework qui va en créer une ou en fournir une déjà existante.	
 
 
 Exemple : 
-Voici ce que donnerait un exemple en Java sans injection de dépendance : ici l'instance de la classe Item est directement créé par l'appelle du **new** dans le constructeur, cette instance sera forcément du type ItemImpl1.
+Voici ce que donnerait un exemple en Java sans injection de dépendance : ici l'instance de la classe Item est directement créée par l'appel du **new** dans le constructeur, cette instance sera forcément du type ItemImpl1.
 
 ```java
 public class Store {
@@ -65,7 +64,7 @@ public class Store {
 }
 ```
 
-Dans le cas de l'inversion de dépendance, l'instanciation n'est pas faites directement dans le constructeur mais elle est passé en paramètre de ce dernier. Ainsi un objet store peut être créé avec différentes nouvelles implémentations de la classe Item  (ItemImpl1, ItemImpl2 etc...) ou avec une implémentation déja existante.
+Dans le cas de l'inversion de dépendance, l'instanciation n'est pas faites directement dans le constructeur mais elle est passé en paramètre de ce dernier. Ainsi un objet store peut être créé avec différentes nouvelles implémentations de la classe Item (ItemImpl1, ItemImpl2 etc.) ou avec une implémentation déjà existante.
 
 ```java
 public class Store {
@@ -76,9 +75,9 @@ public class Store {
 }
 ```
 
-Les bénèfices de l'IoC sont nombreux : 
+Les bénéfices de l'IoC sont nombreux : 
 
-* Découplé l'exécution et l’implémentation des tâches.
+* Découpler l'exécution et l’implémentation des tâches.
 * Plus simple de changer d’implémentation.
 * Plus grande modularité du programme.
 * Simplicité des tests par isolation des composants.
@@ -90,7 +89,7 @@ Les bénèfices de l'IoC sont nombreux :
 Spring Initilizr est un site qui permet, permet en remplissant un formulaire de générer, en appuyant sur le bouton generate, une archive qui permet d'amorcer le projet. Il y a le fichier pom.xml qui a déjà les dépendances de bases dont on aura besoin en fonction de ce que l'on aura rempli dans le formulaire, l’arborescence du projet est déjà créée automatiquement le dossier pour le main, le dossier pour les tests, etc. Dans le dossier src il y a déjà le squelette d'une classe pour une application qui utilise Spring Boot. Si on ne souhaite pas générer tous ces fichiers on peut seulement les consulter en appuyant sur le bouton Explore.
 
 
-##### Spring Testig 
+##### Spring Testing 
 
 
 Spring Test est un module qui, comme son nom l'indique,  permet de tester son application. C'est un module qui contient beaucoup de façons de faire des tests pour plusieurs situations possibles. Il est possible de faire à la fois des tests unitaires mais aussi de l'intégration.
@@ -120,22 +119,23 @@ Il permet de créer facilement des applications autonomes basées sur Spring gr�
   * Automatisation des configurations pour Spring et certaines librairies quand c'est possible
   * Management des dépendances pour éviter les problèmes de versionnages 
   
-Spring Boot est donc un outil extrèmement intéressant pour créé des applications "production-ready" en peu de temps et facilement.
+Spring Boot est donc un outil extrêmement intéressant pour créer des applications "production-ready" en peu de temps et facilement.
 
   
 
 
 ## Objectif du tutoriel
 
-  Dans ce tutoriel nous allons créé une application utilisant une architecture microservice à l'aide de Spring/Spring Boot. 
-  
-  Ces technologies sont très intéréssantes pour ce genre de projet pour plusieurs raisons : 
-  * Création rapide et facile de microservice près a l'emplois et deployable rapidement
-  * Grande flexibilité
-  * Configuration et monitoring simple des services (edge ou micro) grâce au grand nombre de module présent
+
+Dans ce tutoriel nous allons créer une application utilisant une architecture microservice à l'aide de Spring/Spring Boot.
+
+Ces techniques sont très intéressants pour ce genre de projet pour plusieurs raisons :
+* création rapide et facile de microservice prêt à l’emploi et déployable rapidement
+* Grande flexibilité
+* Configuration et monitoring simple des services (edge ou micro) grâce au grand nombre de module présent
 
 
-A la fin de ce tutoriel il vous sera possible de créer une application de gestion de collection simple avec une architecture microservice et API REST. Vous apprendrez aussi comment configurer les edges microservices suivant : Eureka pour le registre, Ribbon pour le load balancing et Zuul comme point d'accée proxy de votre applicaiton.
+À la fin de ce tutoriel il vous sera possible de créer une application de gestion de collection simple avec une architecture microservice et API REST. Vous apprendrez aussi comment configurer les edges microservices suivants : Eureka pour le registre, Ribbon pour le loadbalancing et Zuul comme point d'accès proxy de votre application.
 
  
 
@@ -151,10 +151,9 @@ Pour ce tutoriel nous allons utiliser différent outils :
 * [postman](https://www.postman.com/downloads/) qui est un outil extrèmement utile lors de l'utilisation d'API REST
 
 
-Comme définis précédemment nous allons nous intérésser à la création d'une application de gestion de collection très simple. L'utilisateur de l'application pourra s'inscrire et se connecter, emprunter un livre (c'est à dire l'ajouter à sa collection), rendre un livre (ce qui revient à l'enlever de sa collection) et consulter sa collection de livre.
+Comme définis précédemment nous allons nous intéresser à la création d'une application de gestion de collection très simple. L'utilisateur de l'application pourra s'inscrire et se connecter, emprunter un livre (c'est-à-dire l'ajouter à sa collection), rendre un livre (ce qui revient à l'enlever de sa collection) et consulter sa collection de livres.
 
-
-Voici l'architecture de l'application, nous l'étofferons plus tard dans le projet : 
+Voici l'architecture de l'application, nous l'étofferons plus tard dans le projet ; 
 
 
 ![Architecture](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/archi.png)
@@ -220,7 +219,7 @@ La création de microservices peut se faire automatiquement grâce à l'outil [S
 
 Pour le microservice Utilisateur appelé ms_user : 
 
-faites un clique droit sur le projet MS New > Project...
+Faites un clique droit sur le projet MS New > Project...
 Séléctionner Maven Module
 Cocher la case "Create a simple project" et entrer le nom ms_user puis cliquer sur suivant. 
 Changer le Packaging en jar et mettez le nom ms_user. 
@@ -255,7 +254,7 @@ Il y en aura 5 :
 
 On peut remarquer une similitude entre nos packages et le modele MVC. 
 
-Il est important que l'ensemble des packages ai la même racine, ici **fr.tse.myapp**. Cela permet a Spring Boot de repérer l'ensemble des classes dans notre projet avec une configuration minimale de notre part.
+Il est important que l'ensemble des packages aient la même racine, ici **fr.tse.myapp**. Cela permet a Spring Boot de repérer l'ensemble des classes dans notre projet avec une configuration minimale de notre part.
 
 Pour créer un package c'est simple : cliquer droit sur src/main/java dans le sous projet ms_collection, puis sur new > package
 Entrer le nom de votre package puis finish. 
@@ -291,9 +290,7 @@ public class App {
 }
 ```
 
-Lorsqu'on copie colle ce code directement dans eclipse, l'IDE nous renvois une erreure car il ne sait pas d'ou viennent ces annotations et comment elles marchent il faut donc lui dire ou les chercher. 
-
-Pour cela nous allons ajouter au pom.xml des dépendances sur les quels  Spring Boot ira se basé pour configurer notre application automatiquement ! 
+Lorsqu'on copie colle ce code directement dans eclipse, l'IDE nous renvoie une erreure car il ne sait pas d'où viennent ces annotations et comment elles marchent, il faut donc lui dire où les chercher. Pour cela nous allons ajouter au pom.xml des dépendances sur lesquelles Spring Boot ira se baser pour configurer notre application automatiquement ! 
 
 ```xml
 <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-autoconfigure -->
@@ -310,16 +307,13 @@ Pour cela nous allons ajouter au pom.xml des dépendances sur les quels  Spring 
     <version>2.2.4.RELEASE</version>
 </dependency>
 ```
-
-De façon surprenant nous n'allons pas rajouter ces dépendances dans le pom.xml de notre microservice mais dans celui du projet n-1 c'est à dire MS. Les projets fils héritant des dépendances de leurs parents il est plus facile de placé ces dépendances au niveau n-1 et de ne pas les copier coller pour chaque microservice.
+De façon surprenante nous n'allons pas rajouter ces dépendances dans le pom.xml de notre microservice mais dans celui du projet n-1 c'est-à-dire MS. Les projets fils héritant des dépendances de leurs parents il est plus facile de placer ces dépendances au niveau n-1 et de ne pas les copier coller pour chaque microservice.
 
 On peut alors remarquer que l'erreur n'apparait plus ! 
 
 Au niveau du code nous avons deux différences par rapport à un main normal : 
 
-1. **@SpringBootApplication** 
-
-Est une annotation de Spring Boot  qui regroupe les annotations suivantes : 
+1. **@SpringBootApplication** est une annotation de Spring Boot  qui regroupe les annotations suivantes : 
 
 * @EnableAutoConfiguration qui permet le méchanisme d'auto configuration de Spring Boot. Ce dernier va configurer notre appliaction Spring automatiquement selon les dépendences que nous avons ajouté à notre projet !
 	
@@ -327,7 +321,7 @@ Est une annotation de Spring Boot  qui regroupe les annotations suivantes :
 	
 * @Configuration qui permet d'enregistrer et d'importer nos propres classes de configuration
 
-2. **SpringApplication.run(App.class, args)**
+2. **SpringApplication.run(App.class, args)** qui permet de définir le point d'entrée de notre application Spring ! 
 	
 ```java
 	public static void main(String[] args) {
@@ -336,17 +330,17 @@ Est une annotation de Spring Boot  qui regroupe les annotations suivantes :
 }
 ```
 
-Permet de définir le point d'entrée de notre application Spring ! 
 
 
-Nous pouvons maintenant lancer l'application avec clique droit sur la classe Run As > 1 Java Application
-et ainsi avec ces quelques lignes de code nous avons une application Spring déja fonctionelle sur serveur Tomcat. 
+
+Nous pouvons maintenant lancer l'application avec clique droit sur la classe Run As > 1 Java Application. 
+Ainsi avec ces quelques lignes de code nous avons une application Spring déja fonctionelle sur un serveur Tomcat. 
 
 
 **Application.properties**
 
-Ce fichier, que vous devez créer dans le dossier src/main/resources (clique droit > new > file et application.properties comme nom) permet de faire certaine configuration soit même.
-Par exemple il permet de définir le nom de notre application et le port du serveur Tomcat sur le quel il écoute. Ainsi nous allons ajouter ces lignes : 
+Ce fichier, que vous devez créer dans le dossier src/main/resources (clique droit > new > file et application.properties comme nom) permet de faire certaines configurations soi-même.
+Par exemple il permet de définir le nom de notre application et le port du serveur Tomcat sur lequel il écoute. Ainsi nous allons ajouter ces lignes : 
 
 ```xml
 spring.application.name=ms_collection
@@ -533,8 +527,7 @@ public interface CollectionRepository extends JpaRepository<Collection,String> {
 }
 
 ```
-
-et voici les dépendances dont elle a besoin : 
+Voici les dépendances dont elle a besoin : 
 
 
 ```xml
@@ -584,15 +577,15 @@ Si vous avez l'oeil fin vous aurez remarqué que je parle de la classe Collectio
 Cette interface extend JpaRepository. Cette dernière est un module du framework Spring qui permet de facilement de manipuler des données. 
 
 
-Ansi la méthode save() de notre classe CollectionRepository est une méthode de ce module qui permet de sauvegarder une entrée dans la base de donnée par rapport au information contenue dans un objet. Par exemple pour sauvegarder l'emprunt d'un livre par un utilisateur x nous allons créer un objet Collection avec les différentes informations nécéssaire et le passer en paramètre de la fonction save. 
+Ainsi la méthode save() de notre classe CollectionRepository est une méthode de ce module qui permet de sauvegarder une entrée dans la base de données par rapport au information contenue dans un objet. Par exemple pour sauvegarder l'emprunt d'un livre par un utilisateur x nous allons créer un objet Collection avec les différentes informations nécessaires et le passer en paramètre de la fonction save().  
 
-Il en est de même pour la méthode deleteByidBDD, la méthode deleteBy"Attribut" est une méthode du module JpaRepository.
+Il en est de même pour la méthode deleteByidBDD(), la méthode deleteBy"Attribut"() est une méthode du module JpaRepository.
 Il existe bien d'autre méthode de ce type.
 
 Ces deux méthodes vont servir à "emprunter" et "rendre" un livre. 
 
 
-La méthode getUserColletion permet de consulter la collection d'un utilisateur selon son identifiant unique. Cette méthode n'existe pas dans les modules il faut donc l'écrire. Ici encore Spring va nous faire gagner du temps ! 
+La méthode getUserColletion() permet de consulter la collection d'un utilisateur selon son identifiant unique. Cette méthode n'existe pas dans les modules il faut donc l'écrire. Ici encore Spring va nous faire gagner du temps ! 
 
 @Query permet d'écrire des queries, soit en JPQL par défaut soit dans le langage de votre base de données ( grâce au paramètre "nativeQuery=true"). Ainsi nous écrivons une query pour récupérer l'ensemble des entrées qui correspondent à l'id fournis. Cette méthode va retourner le résultat dans le return de la signature donc une Liste d'instance de Collection. Rien de plus simple !
 
@@ -625,7 +618,7 @@ De cette façon se conclue la partie Repository, nous allons donc passer à la p
 
 **Service**
 
-Le package service est le package qui gère l'ensemble du code métier. la classe CollectionService est un lien entre l'API et le repository, c'est dans celle-ci que nous devrons faire les tranformations de données, le tri etc... ainsi elle aura pour attribut un objet de type CollectionRepository pour pouvoir appelé les méthodes save(), deleteByIDBB(), et getUserCollection().
+Le package service est le package qui gère l'ensemble du code métier. la classe CollectionService est un lien entre l'API et le repository, c'est dans celle-ci que nous devrons faire les transformations de données, le tri, etc. Ainsi elle aura pour attribut un objet de type CollectionRepository pour pouvoir appeler les méthodes save(), deleteByIDBB(), et getUserCollection().
 
 Voici le code de la classe : 
 ```java
@@ -692,15 +685,15 @@ public class CollectionService {
 Dans cette classe nous pouvons retrouver plusieurs points intéréssant : 
 
 * L'annotation @Service ayant les mêmes fonctions que les annotations @Repository et @Entity précédente.
-* L'annotation @Autowired qui permet de faire de l'inversion de dépendance, la classe CollectionService devant appeler une instance de la classe CollectionRepository. De cette manière le couplage entre les deux classes est réduit et une instance de CollectionRepository est passé dès que celle ci est disponible. 
-* L'utilisation du RestTemplate pour récupérer des informations du microservice ms_user : On peut remarquer que l'on envoit et reçois des objets userReq et userRep de la classe UserDTO du package domain. Ces objets correspondent au body d'une requéte REST envoyé au microservice et au body de sa réponse. Spring Boot permet encore une fois de lui même de sérialiser des objets et les désérialiser de façon simple et facile. Pour ce faire les classes doivent comporter des constructeurs, setteur, getteur et toString(). Ces classes peuvent être assez général car Spring permet d'ignorer les champs vides facilement.
+* L'annotation @Autowired qui permet de faire de l'inversion de dépendance, la classe CollectionService devant appeler une instance de la classe CollectionRepository. De cette manière le couplage entre les deux classes est réduit et une instance de CollectionRepository est passé dès que celle-ci est disponible.
+* L'utilisation du RestTemplate pour récupérer des informations du microservice ms_user : On peut remarquer que l'on envoie et reçois des objets userReq et userRep de la classe UserDTO du package domain. Ces objets correspondent au body d'une requête REST envoyé au microservice et au body de sa réponse. Spring Boot permet encore une fois de lui-même de sérialiser des objets et les désérialiser de façon simple et facile. Pour ce faire les classes doivent comporter des constructeurs, setteur, getteur et toString(). Ces classes peuvent être assez général car Spring permet d'ignorer les champs vides facilement.
 
 
-Cette classe permet d'emprunter un livre, en faisant appel au microservice Utilisateur pour avoir certaines informations (tel que son id), de retourner un livre en faisant appel à la methode deleteByIdBDD ou de consulter la collection d'un utilisateur grâce à l'objet CollectionRepository
+Cette classe permet d'emprunter un livre, en faisant appel au microservice Utilisateur pour avoir certaines informations (tel que son id), de retourner un livre en faisant appel à la méthode deleteByIdBDD() ou de consulter la collection d'un utilisateur grâce à l'objet CollectionRepository.
 
 **API**
 
-Le package API gère le routage vers le microservice. La classe CollectionApi gère les routes vers le microservice Collection et les actions à faire lors d'une requête vers une des routes. Ainsi cette classe doit avoir accée à une instance de la classe CollectionService pour pouvoir faire appel à ses méthodes.
+Le package API gère le routage vers le microservice. La classe CollectionApi gère les routes vers le microservice Collection et les actions à faire lors d'une requête vers une des routes. Ainsi cette classe doit avoir accès à une instance de la classe CollectionService pour pouvoir faire appel à ses méthodes.
 
 Voici le code de la classe : 
 
@@ -756,9 +749,9 @@ Les points intéréssant de classe sont les suivants :
 * @RestController qui permet d'enregistrer cette classe en tant que Rest Controller
 * @Autowired pour l'inversion de dépendance
 * @RequestMapping qui permet de définir la route vers notre application :
-	1. path permet de définir le chemin 
-	2. method permet de choisir à quel verbe http correspond la méthode
-	3. consumes permet de définir quel type d'objet la méthode consomme en entré (json, xml ...) de même pour produce qui définis ce que la méthode produit en sortie
+	1. path : permet de définir le chemin 
+	2. method : permet de choisir à quel verbe http correspond la méthode
+	3. consumes : permet de définir quel type d'objet la méthode consomme en entré (json, xml ...) de même pour produce qui définis ce que la méthode produit en sortie
 	
 A cette route définie par @RequestMapping va s'appliquer la méthode définis en dessous et retourner l'objet suivant le "return".
 
