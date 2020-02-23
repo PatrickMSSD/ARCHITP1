@@ -783,3 +783,10 @@ Voici ce que devrait être le résultat :
 
 
 ![json](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/json.PNG)
+
+Et avec pgAdmin nous pouvons vérifier que l'utilisateur à bien été créé dans la base de données avec une query du type : 
+
+```SQL
+SELECT * FROM Utilisateurs
+```
+
