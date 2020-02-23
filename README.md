@@ -1224,3 +1224,21 @@ Maintenant pour l'exécution il faudra lancer, Eureka, Zuul puis nos microservic
 
 Spring est un framework complet et puissant pour créer des applications autonomes et prêtes à déployer. Spring Boot n'est qu'une petite partie du framework mais facilite grandement la vie pour la construction de nos applications. Ces deux technologies sont extrêmement intéressantes pour la construction d'application en architecture microservice, car elles permettent le déploiement d'application autonome, modulable facilement et les modules fournis sont nombreux pour étoffer nos applications.
 
+
+## Références : 
+
+**Spring Boot 2 Fundamentals**
+
+Patrick Cornelien; Birmingham, England : Packt Publishing; 2018
+
+**Learn Microservices with Spring Boot: A Practical Approach to RESTful Services using RabbitMQ, Eureka, Ribbon, Zuul and Cucumber**
+
+Macero, Moises; Berkeley, CA: Apress; 2017
+
+https://spring.io
+
+https://baeldung.com
+
+https://openclassrooms.com/fr/courses/4668216-optimisez-votre-architecture-microservices
+
+
