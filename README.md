@@ -958,7 +958,7 @@ Et avec pgAdmin nous pouvons vérifier que l'utilisateur à bien été créé da
 ```SQL
 SELECT * FROM Utilisateurs
 ```
-Nous avons construit une application sous forme d’architecture assez simple mais Spring / Spring boot nous de permet de l’étoffer facilement !
+Nous avons construit une application sous forme d’architecture assez simple mais Spring / Spring boot nous de permet de l’étoffer facilement grâce a des dépendances tel que Spring Cloud !
 
 **Eureka**
 
@@ -1083,4 +1083,142 @@ Ainsi en lançant Eureka puis vos microservices vous les verrez apparaitres sur 
 
 ![eureka](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/eureka.PNG)
 
+
+**Ribbon** 
+
+Ribbon est un load balancer coté client, comme son nom l'indique il permet de répartir la charge entre les différentes instances des différents microservices.
+
+Pour l'ajouter c'est assez simple : 
+
+* Pour chaque microservice il faut ajouter la dépendance suivante : 
+
+```xml
+<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-ribbon -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+			<version>2.2.1.RELEASE</version>
+		</dependency>
+```
+
+* Il faut aussi ajouter l'annotation @RibbonClient(name = "nom du microservice") dans la classe principale
+
+
+Et c'est tout ! 
+
+Il est possible de donner à Ribbon les adresses des différentes instances des microservices mais grâce à Eureka, c'est fait automatiquement !
+
+
+**Zuul** 
+
+Pour finir nous allons mettre en place Zuul, Zuul est un edge microservice qui va permettre d'avoir un point d'entrée unique à notre application. Il offre de nombreux avantages tel que la possibilité de filtrer les requétes, les rediriger, les modifier etc ...
+
+De même que pour Eureka il faut créer un nouveau sous projet au projet EMS et créer sa classe principale ZuulServerApplication.
+
+Voici le code de sa classe principale : 
+
+```java
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+
+@SpringBootApplication
+@EnableZuulProxy
+@EnableDiscoveryClient
+public class ZuulServerApplication {
+
+  public static void main(String[] args) {
+      SpringApplication.run(ZuulServerApplication.class, args);
+  }
+}
+```
+ et voici les dépendances à ajouter au pom.xml de ems_zuul :
+ 
+```xml
+<dependencies>
+		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-eureka-server -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-zuul -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+
+		</dependency>
+
+
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-core</artifactId>
+			<version>2.3.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+
+
+
+	</dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-parent</artifactId>
+				<version>Greenwich.RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+```
+
+Nous allons ensuites modifier le fichier application.properties de Zuul avec ces lignes :
+```xml
+spring.application.name=zuul-server
+server.port 9004
+
+#Eureka
+eureka.client.serviceUrl.defaultZone: http://localhost:9102/eureka/
+```
+
+Ainsi Zuul sera reconnu et enregistrer par Eureka.
+
+Et c'est tout pour la mise en place de Zuul !
+
+Maintenant pour se connecter à un microservice depuis un client extérieur il faudra passer par Zuul. Par exemple on ne tapera plus http://localhost:8082/Consulter mais http://localhost:9004/ms_collection/Consulter et c'est Zuul qui redirigera la requète au service concerné.
+
+Comme vous avez pu le constater l'architecture finale est un peu diffèrente de celle présenté au debut et ressemble plutôt à cela maintenant : 
+
+
+
+![ems](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/ems.png)
+
+
+
+
+Maintenant pour l'execution il faudra lancer, Eureka, Zuul puis nos microservice. Pour de plus grosse application cela peut paraitre lourd ainsi les containers comme Dockers et les solutions d'orchestrations tel que Kubernetes sont toujours les bienvenues pour nous faciliter la vie.
+
+
+**Conclusion** 
+
+Spring est un framework complet et puissant pour créer des applications autonomes et prêtes à déployer. Spring Boot n'est qu'une petite partie du framework mais facilite grandement la vie pour la construction de nos applications. Ces deux technologies sont extrèmement intéréssante pour la construction d'application en architecture microservice car elles permettent le déploiement d'application autonome, modulable facilement et les modules fournis sont nombreux pour étoffer nos applications.
 
