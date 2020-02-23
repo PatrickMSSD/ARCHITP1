@@ -414,7 +414,7 @@ Au niveau du code nous avons deux différences par rapport à un main normal :
 
 1. **@SpringBootApplication** est une annotation de Spring Boot  qui regroupe les annotations suivantes : 
 
-* @EnableAutoConfiguration qui permet le méchanisme d'auto configuration de Spring Boot. Ce dernier va configurer notre appliaction Spring automatiquement selon les dépendences que nous avons ajouté à notre projet !
+* @EnableAutoConfiguration qui permet le méchanisme d'auto configuration de Spring Boot. Ce dernier va configurer notre appliaction Spring automatiquement selon les dépendances que nous avons ajouté à notre projet !
 	
 * @ComponentScan permet de scanner le package ( ou l'ensemble de sous package dans notre cas) ou l'application se trouve et ainsi localiser l'ensemble des éléments (classe, interface ...)
 	
@@ -1049,7 +1049,7 @@ Et nous avons tout simplement créer notre registre que vous pouvez lancer comme
 
 Maintenant pour chacun de nos microservices à monitorer il faudra faire les modifications suivantes : 
 
-* Ajouter la dépendence suivante : 
+* Ajouter la dépendance suivante : 
 
 ```xml
 <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-eureka-client -->
@@ -1206,7 +1206,7 @@ Et c'est tout pour la mise en place de Zuul !
 
 Maintenant pour se connecter à un microservice depuis un client extérieur il faudra passer par Zuul. Par exemple on ne tapera plus http://localhost:8082/Consulter mais http://localhost:9004/ms_collection/Consulter et c'est Zuul qui redirigera la requète au service concerné.
 
-Comme vous avez pu le constater l'architecture finale est un peu diffèrente de celle présenté au debut et ressemble plutôt à cela maintenant : 
+Comme vous avez pu le constater l'architecture finale est un peu différente de celle présenté au début et ressemble plutôt à cela maintenant : 
 
 
 
@@ -1215,10 +1215,10 @@ Comme vous avez pu le constater l'architecture finale est un peu diffèrente de 
 
 
 
-Maintenant pour l'execution il faudra lancer, Eureka, Zuul puis nos microservice. Pour de plus grosse application cela peut paraitre lourd ainsi les containers comme Dockers et les solutions d'orchestrations tel que Kubernetes sont toujours les bienvenues pour nous faciliter la vie.
+Maintenant pour l'exécution il faudra lancer, Eureka, Zuul puis nos microservice. Pour de plus grosses applications, cela peut paraître lourd ainsi les containers comme Dockers et les solutions d'orchestrations tel que Kubernetes sont toujours les bienvenues pour nous faciliter la vie.
 
 
-**Conclusion** 
+**Conclusion**
 
-Spring est un framework complet et puissant pour créer des applications autonomes et prêtes à déployer. Spring Boot n'est qu'une petite partie du framework mais facilite grandement la vie pour la construction de nos applications. Ces deux technologies sont extrèmement intéréssante pour la construction d'application en architecture microservice car elles permettent le déploiement d'application autonome, modulable facilement et les modules fournis sont nombreux pour étoffer nos applications.
+Spring est un framework complet et puissant pour créer des applications autonomes et prêtes à déployer. Spring Boot n'est qu'une petite partie du framework mais facilite grandement la vie pour la construction de nos applications. Ces deux technologies sont extrêmement intéressantes pour la construction d'application en architecture microservice, car elles permettent le déploiement d'application autonome, modulable facilement et les modules fournis sont nombreux pour étoffer nos applications.
 
