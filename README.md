@@ -1081,4 +1081,6 @@ eureka.client.serviceUrl.defaultZone: http://localhost:9102/eureka/
 
 Ainsi en lançant Eureka puis vos microservices vous les verrez apparaitres sur la page d'Eureka : 
 
-![](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/projet.PNG)
+![eureka](https://github.com/PatrickMSSD/ARCHITP1/blob/master/RMRessources/eureka.PNG)
+
+
